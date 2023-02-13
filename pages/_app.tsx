@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app'
 import Head from "next/head";
-import AppBar from "@/components/Header";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import React from "react";
@@ -44,12 +45,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       <title>Demo Frontend</title>
     </Head>
     <ThemeProvider theme={theme}>
-      <AppBar />
+      <Header />
       <Box component="main" sx={{ p: 3 }}>
         <Container maxWidth="xl">
           <Component {...pageProps} />
         </Container>
       </Box>
+      <Footer />
     </ThemeProvider>
   </>)
 }
