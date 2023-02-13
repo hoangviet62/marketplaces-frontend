@@ -42,7 +42,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (<>
     <Head>
       <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-      <title>Demo Frontend</title>
+      <title>{process.env.appName}</title>
     </Head>
     <ThemeProvider theme={theme}>
       <Header />
