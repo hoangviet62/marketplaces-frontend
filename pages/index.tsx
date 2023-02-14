@@ -1,10 +1,13 @@
-import MediaCard from '@/components/Card'
-import Carousel from '@/components/Carousel'
 import Banner from '@/components/Banner'
 import { CardProps } from '@/interfaces/card-props'
 import { Box, Container } from '@mui/material'
 import type { NextPage } from 'next'
 import { useState } from 'react'
+import About from './Home/components/About'
+import Category from './Home/components/Category'
+import categories from './Home/components/category/data.json'
+import News from './Home/components/News'
+import Product from './Home/components/Product'
 
 const items: CardProps[] = [
   {
@@ -45,12 +48,10 @@ const Home: NextPage = () => {
     <Box>
       <Banner items={items} />
       <Container maxWidth="xl">
-        <Carousel
-          items={mockApiItems}
-          CardComponent={MediaCard}
-          itemsPerView={3}
-          callback={callback}
-        />
+        <Category data={categories.data} />
+        <Product items={mockApiItems} callback={callback} />
+        <News data={categories.data.slice(0, 3)} />
+        <About />
       </Container>
     </Box>
   )

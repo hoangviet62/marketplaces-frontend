@@ -11,6 +11,7 @@ import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import { alpha, styled } from '@mui/material/styles'
 import { Box } from '@mui/material'
+import MediaCard from '../Card'
 
 type SwiperProps = {
   isBanner: boolean
@@ -45,7 +46,7 @@ const StyledSwiper = styled(Swiper, {
 const Carousel: React.FC<CarouselProps> = ({
   items,
   callback,
-  CardComponent,
+  CardComponent = MediaCard,
   itemsPerView = 1,
   itemsPerViewWithMobileDevice = 1,
   isBanner = false,

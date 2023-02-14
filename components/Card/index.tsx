@@ -46,7 +46,7 @@ const MediaCard: React.FC<CardProps> = ({
 
   const renderBackgroundCard = () => (
     <StyledBackgroundCard sx={{ backgroundImage: `url("${image}")` }}>
-      <StyledContainer>
+      <StyledContainer maxWidth="xl">
         <CardContent sx={{ width: '30%' }}>
           <Typography gutterBottom variant="h5" component="div">
             {title}
