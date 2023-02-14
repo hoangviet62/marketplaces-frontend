@@ -1,6 +1,8 @@
 import MediaCard from '@/components/Card'
 import Carousel from '@/components/Carousel'
+import Banner from '@/components/Banner'
 import { CardProps } from '@/interfaces/card-props'
+import { Box, Container } from '@mui/material'
 import type { NextPage } from 'next'
 import { useState } from 'react'
 
@@ -38,23 +40,19 @@ const Home: NextPage = () => {
     let newArr = JSON.parse(JSON.stringify(items))
     newArr = newArr.concat(mockApiItems)
     setMockApiItems(newArr)
-    console.log('newArr', newArr)
   }
   return (
-    <div>
-      {/* <Carousel
-        items={mockApiItems}
-        CardComponent={MediaCard}
-        itemsPerView={1}
-        callback={callback}
-      /> */}
-      <Carousel
-        items={mockApiItems}
-        CardComponent={MediaCard}
-        itemsPerView={3}
-        callback={callback}
-      />
-    </div>
+    <Box>
+      <Banner items={items} />
+      <Container maxWidth="xl">
+        <Carousel
+          items={mockApiItems}
+          CardComponent={MediaCard}
+          itemsPerView={3}
+          callback={callback}
+        />
+      </Container>
+    </Box>
   )
 }
 
