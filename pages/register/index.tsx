@@ -6,12 +6,12 @@ import {
   Typography,
   Button,
   CardActions,
-  Box,
+  Link,
 } from '@mui/material'
 import { NextPage } from 'next'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import validators from '@/validators/login'
+import validators from '@/validators/registration'
 import Input from '@/components/Input'
 import { useRouter } from 'next/router'
 
@@ -24,7 +24,7 @@ const StyledContainer = styled(Container)(({ theme }) => ({
   marginTop: theme.spacing(5),
 }))
 
-const Login: NextPage = () => {
+const Registration: NextPage = () => {
   const {
     register,
     handleSubmit,
@@ -33,59 +33,23 @@ const Login: NextPage = () => {
     resolver: zodResolver(validators),
   })
 
-  const router = useRouter();
-
+  const router = useRouter()
   const onSubmit = (data) => console.log(data)
+  const handleNavigateRegister = () => router.push('/login')
 
-  const handleNavigateRegister = () => router.push('/register')
-  const renderRegisterCard = () => (
-    <Box>
-      <Card
-        sx={{
-          maxWidth: 345,
-          height: '20vw',
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
-        <CardContent>
-          <Typography gutterBottom variant="h6" component="div">
-            Register
-          </Typography>
-          <Typography component="p">
-            Does your company already have an account? Register as a new account
-            or as a member of an existing account.
-          </Typography>
-        </CardContent>
-        <CardActions sx={{ mb: 1, mt: 'auto' }}>
-          <Button
-            type="submit"
-            variant="outlined"
-            sx={{ width: '100%' }}
-            disableElevation
-            color="secondary"
-            onClick={handleNavigateRegister}
-          >
-            Register
-          </Button>
-        </CardActions>
-      </Card>
-    </Box>
-  )
-
-  const renderLoginForm = () => (
+  const renderRegistrationForm = () => (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Card
         sx={{
           maxWidth: 345,
-          height: '20vw',
+          height: '37vw',
           display: 'flex',
           flexDirection: 'column',
         }}
       >
         <CardContent>
           <Typography gutterBottom variant="h6" component="div">
-            Login
+            Registration
           </Typography>
           <Input
             fieldName="username"
@@ -95,15 +59,40 @@ const Login: NextPage = () => {
             type="text"
           />
           <Input
+            fieldName="email"
+            labelName="Email"
+            errors={errors}
+            register={register}
+            type="Email"
+          />
+          <Input
             fieldName="password"
             labelName="Password"
             errors={errors}
             register={register}
             type="password"
           />
+          <Input
+            fieldName="confirmPassword"
+            labelName="Confirm Password"
+            errors={errors}
+            register={register}
+            type="password"
+          />
+
+          <Input
+            fieldName="mobileNumber"
+            labelName="Phone Number"
+            errors={errors}
+            register={register}
+            type="text"
+          />
 
           <Typography component="p" sx={{ color: 'primary' }}>
-            Forget your password?
+            Already have account?{' '}
+            <Link onClick={handleNavigateRegister}>
+              Sign in.
+            </Link>
           </Typography>
         </CardContent>
         <CardActions sx={{ mb: 1, mt: 'auto' }}>
@@ -113,7 +102,7 @@ const Login: NextPage = () => {
             sx={{ width: '100%' }}
             disableElevation
           >
-            Login
+            Submit
           </Button>
         </CardActions>
       </Card>
@@ -121,11 +110,8 @@ const Login: NextPage = () => {
   )
 
   return (
-    <StyledContainer maxWidth="xl">
-      {renderLoginForm()}
-      {renderRegisterCard()}
-    </StyledContainer>
+    <StyledContainer maxWidth="xl">{renderRegistrationForm()}</StyledContainer>
   )
 }
 
-export default Login
+export default Registration
