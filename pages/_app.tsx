@@ -19,8 +19,8 @@ const theme = createTheme({
       secondary: '#ffffff',
     },
     common: {
-      black: '#ffffff',
-      white: '#000000',
+      black: '#000000',
+      white: '#ffffff',
     }
   },
   typography: {

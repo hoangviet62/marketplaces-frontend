@@ -22,7 +22,7 @@ import { Divider } from '@mui/material';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: 0,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  backgroundColor: alpha(theme.palette.common.white, 0.25),
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
@@ -31,7 +31,7 @@ const Search = styled('div')(({ theme }) => ({
   width: '100%',
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(3),
-    width: 'auto',
+    width: 500,
   },
 }));
 
@@ -52,6 +52,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
+    height: 35,
     [theme.breakpoints.up('md')]: {
       width: '20ch',
     },
@@ -194,10 +195,8 @@ export default function PrimarySearchAppBar() {
               aria-label="show 17 new notifications"
               color="inherit"
             >
-              <Badge badgeContent={17} color="error">
-                <HistoryIcon />
-              </Badge>
-              <Typography>Quick Order</Typography>
+              <HistoryIcon />
+              <Typography sx={{ ml: 1 }}>Quick Order</Typography>
             </IconButton>
             <IconButton
               size="large"
