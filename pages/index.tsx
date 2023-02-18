@@ -4,11 +4,11 @@ import { CardProps } from '@/interfaces/card-props'
 import { Box, Container } from '@mui/material'
 import type { NextPage } from 'next'
 import { useState } from 'react'
-import About from './Home/components/About'
-import Category from './Home/components/Category'
-import News from './Home/components/News'
-import Product from './Home/components/Product'
-import categories from './Home/components/category/data.json'
+import About from './home/components/About'
+import Category from './home/components/Category'
+import News from './home/components/News'
+import Product from './home/components/Product'
+import categories from './home/components/category/data.json'
 
 const items: CardProps[] = [
   {

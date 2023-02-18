@@ -1,7 +1,39 @@
 html,
-body,
-body>div:first-child,
-div#__next,
-div#__next>main {
+body {
+  height: 100%
+}
+
+#header {
+  height: 56px;
+  width: 100%;
+}
+
+#__next {
   height: 100%;
+}
+
+#holder {
+  min-height: 100%;
+  position: relative;
+}
+
+#body {
+  padding-bottom: 56px;
+}
+
+#footer {
+  bottom: 0;
+  height: 56px;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
+.MuiCard-root {
+  display: flex;
+  flex-direction: column;
+}
+
+.MuiCardActions-root {
+  margin-top: auto;
 }

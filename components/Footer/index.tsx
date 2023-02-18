@@ -9,13 +9,20 @@ const TermLink = styled(Link)(({ theme }) => ({
 
 const Footer = () => {
   return (
-    <AppBar sx={{ alignItems: 'center' }} position="sticky" component="footer">
-      <Toolbar sx={{ height: 56 }}>
-        <Typography variant="caption" component="div">
-          © {new Date().getFullYear()} All rights reserved. See our &nbsp; <TermLink href="#">Terms And Conditions</TermLink>, &nbsp;<TermLink href="#">Terms and Conditions of Sale</TermLink> &nbsp;and&nbsp; <TermLink href="#">Privacy Policy</TermLink>
-        </Typography>
-      </Toolbar>
-    </AppBar>
+    <div id="footer">
+      <AppBar sx={{ alignItems: 'center', position: 'absolute' }}>
+        <Toolbar>
+          <Typography variant="body1" component="div">
+            © {new Date().getFullYear() + ' '}
+            All rights reserved. See our&nbsp;
+            <TermLink href="#">Terms And Conditions</TermLink>,&nbsp;
+            <TermLink href="#">Terms and Conditions of Sale</TermLink>&nbsp;
+            and <TermLink href="#">Privacy Policy</TermLink>
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    </div >
+
   )
 }
 

@@ -1,5 +1,4 @@
 import {
-  Container,
   styled,
   Card,
   CardContent,
@@ -7,7 +6,8 @@ import {
   Button,
   CardActions,
   Box,
-  Grid
+  Grid,
+  Paper
 } from '@mui/material'
 import { NextPage } from 'next'
 import { useForm } from 'react-hook-form'
@@ -18,6 +18,7 @@ import { useRouter } from 'next/router'
 import { LoginPayload } from '@/interfaces/auth'
 import { trimFormField } from '@/utils/trim-form-field'
 import { useLogin, useLogout } from '@/hooks/useAuth'
+import Container from '@/components/Container'
 
 const Login: NextPage = () => {
   const {
@@ -40,46 +41,38 @@ const Login: NextPage = () => {
 
   const handleNavigateRegister = () => router.push('/register')
   const renderRegisterCard = () => (
-    <Box>
-      <Card
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
-        <CardContent>
-          <Typography gutterBottom variant="h6" component="div">
-            Register
-          </Typography>
-          <Typography component="p">
-            Does your company already have an account? Register as a new account
-            or as a member of an existing account.
-          </Typography>
-        </CardContent>
-        <CardActions sx={{ mb: 1, mt: 'auto' }}>
-          <Button
-            type="submit"
-            variant="outlined"
-            sx={{ width: '100%' }}
-            disableElevation
-            color="secondary"
-            onClick={handleNavigateRegister}
-          >
-            Register
-          </Button>
-        </CardActions>
-      </Card>
-    </Box>
+    <Card
+      sx={{
+        height: '100%'
+      }}
+    >
+      <CardContent>
+        <Typography gutterBottom variant="h6" component="div">
+          Register
+        </Typography>
+        <Typography component="p">
+          Does your company already have an account? Register as a new account
+          or as a member of an existing account.
+        </Typography>
+      </CardContent>
+      <CardActions sx={{ mb: 1, mt: 'auto' }}>
+        <Button
+          type="submit"
+          variant="outlined"
+          sx={{ width: '100%' }}
+          disableElevation
+          color="secondary"
+          onClick={handleNavigateRegister}
+        >
+          Register
+        </Button>
+      </CardActions>
+    </Card>
   )
 
   const renderLoginForm = () => (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Card
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
+      <Card>
         <CardContent>
           <Typography gutterBottom variant="h6" component="div">
             Login
@@ -118,14 +111,19 @@ const Login: NextPage = () => {
   )
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={6}>
-        {renderRegisterCard()}
+    <Container>
+      <Grid spacing={3} container
+        direction="row"
+        justifyContent="center"
+        alignItems="stretch">
+        <Grid item xs={6}>
+          {renderLoginForm()}
+        </Grid>
+        <Grid item xs={6}>
+          {renderRegisterCard()}
+        </Grid>
       </Grid>
-      <Grid item xs={6}>
-        {renderLoginForm()}
-      </Grid>
-    </Grid>
+    </Container>
   )
 }
 

@@ -14,10 +14,6 @@ const theme = createTheme({
       main: '#026928',
       dark: '#597226',
     },
-    text: {
-      //   primary: '#ffffff',
-      //   secondary: '#ffffff',
-    },
     common: {
       black: '#000000',
       white: '#ffffff',
@@ -59,11 +55,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <ReactQueryProvider>
         <ThemeProvider theme={theme}>
-          <Header />
-          <Container component="main">
-            <Component {...pageProps} />
-          </Container>
-          <Footer />
+          <div id="holder">
+            <Header />
+            <div id="body">
+              <Component {...pageProps} />
+            </div>
+            <Footer />
+          </div>
         </ThemeProvider>
       </ReactQueryProvider>
     </>
