@@ -2,7 +2,7 @@
 const nextConfig = {
   env: {
     appName: 'Golden Phoenix',
-    apiUrl: 'my-value',
+    apiUrl: 'http://159.223.35.212:8000',
   },
   experimental: {
     appDir: false,
