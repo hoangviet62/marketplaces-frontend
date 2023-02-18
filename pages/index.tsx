@@ -1,13 +1,14 @@
 import Banner from '@/components/Banner'
+import useCategories from '@/hooks/useCategories'
 import { CardProps } from '@/interfaces/card-props'
 import { Box, Container } from '@mui/material'
 import type { NextPage } from 'next'
 import { useState } from 'react'
 import About from './Home/components/About'
 import Category from './Home/components/Category'
-import categories from './Home/components/category/data.json'
 import News from './Home/components/News'
 import Product from './Home/components/Product'
+import categories from './Home/components/category/data.json'
 
 const items: CardProps[] = [
   {
@@ -38,6 +39,8 @@ const items: CardProps[] = [
 
 const Home: NextPage = () => {
   const [mockApiItems, setMockApiItems] = useState<CardProps[]>(items)
+  const { categories: categoryHook } = useCategories()
+
   const callback = () => {
     // call api here
     let newArr = JSON.parse(JSON.stringify(items))
