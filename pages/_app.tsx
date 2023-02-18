@@ -6,13 +6,22 @@ import Box from '@mui/material/Box'
 import { createTheme } from '@mui/material'
 import { ThemeProvider } from '@mui/system'
 import { ReactQueryProvider } from '@/lib/react-query'
+import { common } from '@mui/material/colors'
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#fe5020',
-      dark: '#e0e0e0',
+      main: '#026928',
+      dark: '#597226',
     },
+    text: {
+      primary: '#ffffff',
+      secondary: '#ffffff',
+    },
+    common: {
+      black: '#000000',
+      white: '#ffffff',
+    }
   },
   typography: {
     fontFamily: 'Avantt-Regular',
