@@ -9,7 +9,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
-import { alpha, styled } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
 import { Box } from '@mui/material'
 import MediaCard from '../Card'
 
@@ -28,13 +28,13 @@ const StyledSwiper = styled(Swiper, {
     marginLeft: isBanner ? '50px' : 0,
   },
   '& .swiper-pagination-bullet': {
-    background: alpha(theme.palette.primary.main, 0.5),
+    background: theme.palette.common.white,
   },
   '& .swiper-button-prev:after': {
-    color: alpha(theme.palette.primary.main, 0.5),
+    color: theme.palette.common.white,
   },
   '& .swiper-button-next:after': {
-    color: alpha(theme.palette.primary.main, 0.5),
+    color: theme.palette.common.white,
   },
   '& swiper-button-next.swiper-button-disabled': {
     opacity: '1 !important',
@@ -53,7 +53,6 @@ const Carousel: React.FC<CarouselProps> = ({
 }) => {
   const [isLastItem, setLastItem] = useState<boolean>(false)
 
-  // const theme = useTheme()
   const handleNext = () => {
     if (isBanner) return
     if (!isLastItem) {
@@ -62,8 +61,6 @@ const Carousel: React.FC<CarouselProps> = ({
 
     callback && callback()
   }
-
-  // const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
     <Box position="relative">
