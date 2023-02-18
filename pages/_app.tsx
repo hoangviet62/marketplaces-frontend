@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import Box from '@mui/material/Box'
+import { Box, Container } from '@mui/material'
 import { createTheme } from '@mui/material'
 import { ThemeProvider } from '@mui/system'
 import { ReactQueryProvider } from '@/lib/react-query'
@@ -15,8 +15,8 @@ const theme = createTheme({
       dark: '#597226',
     },
     text: {
-      primary: '#ffffff',
-      secondary: '#ffffff',
+      //   primary: '#ffffff',
+      //   secondary: '#ffffff',
     },
     common: {
       black: '#000000',
@@ -60,9 +60,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ReactQueryProvider>
         <ThemeProvider theme={theme}>
           <Header />
-          <Box component="main">
+          <Container component="main">
             <Component {...pageProps} />
-          </Box>
+          </Container>
           <Footer />
         </ThemeProvider>
       </ReactQueryProvider>

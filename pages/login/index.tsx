@@ -7,6 +7,7 @@ import {
   Button,
   CardActions,
   Box,
+  Grid
 } from '@mui/material'
 import { NextPage } from 'next'
 import { useForm } from 'react-hook-form'
@@ -17,15 +18,6 @@ import { useRouter } from 'next/router'
 import { LoginPayload } from '@/interfaces/auth'
 import { trimFormField } from '@/utils/trim-form-field'
 import { useLogin, useLogout } from '@/hooks/useAuth'
-
-const StyledContainer = styled(Container)(({ theme }) => ({
-  height: '100%',
-  display: 'flex',
-  gap: theme.spacing(5),
-  justifyContent: 'center',
-  alignItems: 'center',
-  marginTop: theme.spacing(5),
-}))
 
 const Login: NextPage = () => {
   const {
@@ -51,8 +43,6 @@ const Login: NextPage = () => {
     <Box>
       <Card
         sx={{
-          maxWidth: 345,
-          height: '20vw',
           display: 'flex',
           flexDirection: 'column',
         }}
@@ -86,8 +76,6 @@ const Login: NextPage = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Card
         sx={{
-          maxWidth: 345,
-          height: '20vw',
           display: 'flex',
           flexDirection: 'column',
         }}
@@ -130,10 +118,14 @@ const Login: NextPage = () => {
   )
 
   return (
-    <StyledContainer maxWidth="xl">
-      {renderLoginForm()}
-      {renderRegisterCard()}
-    </StyledContainer>
+    <Grid container spacing={2}>
+      <Grid item xs={6}>
+        {renderRegisterCard()}
+      </Grid>
+      <Grid item xs={6}>
+        {renderLoginForm()}
+      </Grid>
+    </Grid>
   )
 }
 

@@ -17,7 +17,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import LogoDevIcon from '@mui/icons-material/LogoDev';
 import HistoryIcon from '@mui/icons-material/History';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Divider } from '@mui/material';
+import Link from '@mui/material/Link';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -170,14 +170,18 @@ export default function PrimarySearchAppBar() {
           >
             <LogoDevIcon sx={{ fontSize: 47 }} />
           </IconButton>
+
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            Golden Phoenix
+            <Link href="/" underline="none" color="inherit">
+              Golden Phoenix
+            </Link>
           </Typography>
+
           <Box sx={{ flexGrow: 1 }} />
           <Search>
             <SearchIconWrapper>
@@ -224,6 +228,6 @@ export default function PrimarySearchAppBar() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
-    </Box>
+    </Box >
   );
 }

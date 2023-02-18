@@ -4,14 +4,15 @@ import cookie from 'js-cookie'
 const axiosClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_APP_API_URL,
   headers: {
-    Accept: 'application/json',
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
   },
 })
 
 axiosClient.interceptors.request.use(
   (config) => {
     const token = cookie.get('token')
-    if (token) config.headers['Authorization'] = `Bearer ${token}`
+    if (token !== 'undefined') config.headers['Authorization'] = `Bearer ${token}`
     return config
   },
   (error) => {

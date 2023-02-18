@@ -34,10 +34,10 @@ const MediaCard: React.FC<CardProps> = ({
     <Card sx={{ minWidth: 345 }}>
       <CardMedia sx={{ height: 140 }} image={image} title="green iguana" />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" color="common.white">
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="common.white">
           {content}
         </Typography>
       </CardContent>
@@ -45,13 +45,13 @@ const MediaCard: React.FC<CardProps> = ({
   )
 
   const renderBackgroundCard = () => (
-    <StyledBackgroundCard sx={{ backgroundImage: `url("${image}")` }}>
+    <StyledBackgroundCard sx={{ backgroundImage: `url("${image}")`, borderRadius: 0 }}>
       <StyledContainer maxWidth="xl">
-        <CardContent sx={{ width: '30%' }}>
-          <Typography gutterBottom variant="h5" component="div">
+        <CardContent sx={{ width: '30%', ml: 2 }}>
+          <Typography gutterBottom variant="h5" component="div" color="common.white">
             {title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="common.white">
             {content}
           </Typography>
         </CardContent>

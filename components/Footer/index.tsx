@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { AppBar, Link, styled, Toolbar } from '@mui/material';
+import { AppBar, Link, styled, Toolbar, BottomNavigation, Paper, BottomNavigationAction, Typography } from '@mui/material';
 
 const TermLink = styled(Link)(({ theme }) => ({
   color: theme.palette.common.white,
@@ -9,13 +9,13 @@ const TermLink = styled(Link)(({ theme }) => ({
 
 const Footer = () => {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar sx={{ alignItems: 'center' }} position="static">
-        <Toolbar sx={{ height: 56 }}>
+    <AppBar sx={{ alignItems: 'center' }} position="sticky" component="footer">
+      <Toolbar sx={{ height: 56 }}>
+        <Typography variant="caption" component="div">
           © {new Date().getFullYear()} All rights reserved. See our &nbsp; <TermLink href="#">Terms And Conditions</TermLink>, &nbsp;<TermLink href="#">Terms and Conditions of Sale</TermLink> &nbsp;and&nbsp; <TermLink href="#">Privacy Policy</TermLink>
-        </Toolbar>
-      </AppBar>
-    </Box>
+        </Typography>
+      </Toolbar>
+    </AppBar>
   )
 }
 
