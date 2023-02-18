@@ -3,9 +3,9 @@ import Head from 'next/head'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Box from '@mui/material/Box'
-import React from 'react'
 import { createTheme } from '@mui/material'
 import { ThemeProvider } from '@mui/system'
+import { ReactQueryProvider } from '@/lib/react-query'
 import { common } from '@mui/material/colors'
 
 const theme = createTheme({
@@ -57,13 +57,15 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <title>{process.env.appName}</title>
       </Head>
-      <ThemeProvider theme={theme}>
-        <Header />
-        <Box component="main">
-          <Component {...pageProps} />
-        </Box>
-        <Footer />
-      </ThemeProvider>
+      <ReactQueryProvider>
+        <ThemeProvider theme={theme}>
+          <Header />
+          <Box component="main">
+            <Component {...pageProps} />
+          </Box>
+          <Footer />
+        </ThemeProvider>
+      </ReactQueryProvider>
     </>
   )
 }

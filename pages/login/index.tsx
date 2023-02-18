@@ -14,6 +14,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import validators from '@/validators/login'
 import Input from '@/components/Input'
 import { useRouter } from 'next/router'
+import { LoginPayload } from '@/interfaces/auth'
+import { trimFormField } from '@/utils/trim-form-field'
+import { useLogin, useLogout } from '@/hooks/useAuth'
 
 const StyledContainer = styled(Container)(({ theme }) => ({
   height: '100%',
@@ -32,10 +35,16 @@ const Login: NextPage = () => {
   } = useForm({
     resolver: zodResolver(validators),
   })
+  const login = useLogin()
 
-  const router = useRouter();
+  const router = useRouter()
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data: LoginPayload) => {
+    const trimedForm = trimFormField(data)
+    login.mutate(trimedForm, {
+      onSuccess: () => console.log('aaa'),
+    })
+  }
 
   const handleNavigateRegister = () => router.push('/register')
   const renderRegisterCard = () => (
