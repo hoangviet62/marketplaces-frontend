@@ -41,6 +41,7 @@ const Login: NextPage = () => {
         } else if (user.data?.role === 'customer') {
           router.push('/customers')
         } else {
+          console.log("aaa");
           router.push('/')
         }
       },

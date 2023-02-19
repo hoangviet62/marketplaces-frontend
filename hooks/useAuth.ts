@@ -7,7 +7,7 @@ import { storage } from '@/utils/cookie'
 
 export function handleUserResponse(resp) {
   const {
-    data: { auth_token },
+    auth_token
   } = resp
   storage.setToken(auth_token)
   return auth_token
