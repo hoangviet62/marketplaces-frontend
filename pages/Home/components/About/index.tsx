@@ -16,7 +16,7 @@ const About: React.FC = () => {
         variant="h5"
         component="div"
         textAlign="center"
-        sx={{ pt: 10 }}
+        sx={{ pt: 7 }}
       >
         About us
       </Typography>
