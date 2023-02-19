@@ -22,7 +22,8 @@ const Category: React.FC<CategoryProps> = ({ data }) => {
         variant="h5"
         component="div"
         textAlign="center"
-        sx={{ mb: 5 }}
+        sx={{ mb: 5, fontWeight: 700 }}
+        color="primary"
       >
         Categories
       </Typography>

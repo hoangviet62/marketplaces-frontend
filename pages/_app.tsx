@@ -2,12 +2,37 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import { Box, Container } from '@mui/material'
 import { createTheme } from '@mui/material'
 import { ThemeProvider } from '@mui/system'
 import { ReactQueryProvider } from '@/lib/react-query'
 import { common } from '@mui/material/colors'
 import ProtectedRoute from '@/hoc/protected-route'
+import localFont from '@next/font/local'
+
+const roboto = localFont({
+  src: [
+    {
+      path: '../public/fonts/Roboto/Roboto-Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Roboto/Roboto-Italic.ttf',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: '../public/fonts/Roboto/Roboto-Bold.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Roboto/Roboto-BoldItalic.ttf',
+      weight: '700',
+      style: 'italic',
+    },
+  ],
+})
 
 const theme = createTheme({
   palette: {
@@ -21,27 +46,24 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Avantt-Regular',
     h3: {
-      fontFamily: 'Avantt-SemiBold',
       fontSize: 72,
       fontWeight: 700,
     },
     h4: {
-      fontFamily: 'Avantt-SemiBold',
       fontSize: '4vh',
       fontWeight: 500,
     },
     body2: {
       fontSize: 18,
       fontWeight: 400,
-    },
+    }
   },
   components: {
     MuiCssBaseline: {
-      styleOverrides: {},
-    },
-  },
+      styleOverrides: {}
+    }
+  }
 })
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -56,7 +78,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <ReactQueryProvider>
         <ThemeProvider theme={theme}>
-          <div id="holder">
+          <div id="holder" className={roboto.className}>
             <Header />
             <div id="body">
               <ProtectedRoute>

@@ -127,10 +127,10 @@ const Login: NextPage = () => {
         justifyContent="center"
         alignItems="stretch"
       >
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           {renderLoginForm()}
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           {renderRegisterCard()}
         </Grid>
       </Grid>
