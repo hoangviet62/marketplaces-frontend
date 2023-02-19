@@ -47,6 +47,7 @@ const Home: NextPage = () => {
     newArr = newArr.concat(mockApiItems)
     setMockApiItems(newArr)
   }
+  
   return (
     <Box>
       <Banner items={items} />

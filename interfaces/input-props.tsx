@@ -10,6 +10,6 @@ export interface InputProps {
   fieldName: string
   labelName: string
   errors: Partial<DeepMap<any, FieldError>>
-  register: UseFormRegister<FieldValues>
+  register: UseFormRegister<FieldValues> | any
   type?: string
 }

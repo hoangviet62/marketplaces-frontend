@@ -7,6 +7,7 @@ import { createTheme } from '@mui/material'
 import { ThemeProvider } from '@mui/system'
 import { ReactQueryProvider } from '@/lib/react-query'
 import { common } from '@mui/material/colors'
+import ProtectedRoute from '@/hoc/protected-route'
 
 const theme = createTheme({
   palette: {
@@ -17,7 +18,7 @@ const theme = createTheme({
     common: {
       black: '#000000',
       white: '#ffffff',
-    }
+    },
   },
   typography: {
     fontFamily: 'Avantt-Regular',
@@ -58,7 +59,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           <div id="holder">
             <Header />
             <div id="body">
-              <Component {...pageProps} />
+              <ProtectedRoute>
+                <Component {...pageProps} />
+              </ProtectedRoute>
             </div>
             <Footer />
           </div>

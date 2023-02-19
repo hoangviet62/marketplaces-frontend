@@ -1,25 +1,26 @@
 import { configureAuth } from 'react-query-auth';
 import { login, register, getUserProfile } from '@/api/auth'
 
-import { User, RegisterPayload, LoginPayload } from '@/interfaces/auth'
+import { RegisterPayload, LoginPayload } from '@/interfaces/auth'
 
 import { storage } from '@/utils/cookie'
 
 export function handleUserResponse(resp) {
   const {
-    data: { token, user },
+    data: { auth_token },
   } = resp
-  storage.setToken(token)
-  return token
+  storage.setToken(auth_token)
+  return auth_token
 }
 
 async function userFn() {
-  // let user = null;
-  // if (storage.getToken()) {
-  //   const data = await getUserProfile();
-  //   user = data;
-  // }
-  return storage.getToken()
+  let user = null;
+  if (storage.getToken()) {
+    const data = await getUserProfile();
+    user = data;
+  }
+
+  return user
 }
 
 async function loginFn(data: LoginPayload) {

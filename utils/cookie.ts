@@ -12,7 +12,7 @@ const setCurrentUser = (user: any): void => {
 const storage = {
     getToken: () => cookie.get('token'),
     setToken: (token: string) =>
-        cookie.set('token', JSON.stringify(token)),
+        cookie.set('token', token),
     clearToken: () => cookie.remove('token'),
 };
 
