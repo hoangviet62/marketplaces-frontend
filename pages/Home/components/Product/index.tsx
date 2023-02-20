@@ -5,8 +5,8 @@ import MediaCard from '@/components/Card'
 import Carousel from '@/components/Carousel'
 
 const CustomWrapper = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.dark,
-  boxShadow: `0 0 0 100vmax ${theme.palette.primary.dark}`,
+  backgroundColor: theme.palette.common.white,
+  boxShadow: `0 0 0 100vmax ${theme.palette.common.white}`,
   clipPath: 'inset(0 -100vmax)',
 }))
 
@@ -18,8 +18,8 @@ const Product: React.FC<CarouselProps> = ({ items, callback }) => {
         variant="h5"
         component="div"
         textAlign="center"
-        sx={{ pt: 7, fontWeight: 700 }}
-        color="common.white"
+        sx={{ pt: 7, fontWeight: 'bold' }}
+        color="primary"
       >
         Featured Products
       </Typography>

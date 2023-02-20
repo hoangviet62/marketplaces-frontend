@@ -7,8 +7,14 @@ import {
   ImageListItem,
   ImageListItemBar,
   useTheme,
+  styled
 } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
+
+const ImageListItemBarCustom = styled(ImageListItemBar)(({ theme }) => ({
+  color: theme.palette.primary.main,
+  textAlign: 'center',
+}));
 
 const Category: React.FC<CategoryProps> = ({ data }) => {
   const theme = useTheme()
@@ -22,7 +28,7 @@ const Category: React.FC<CategoryProps> = ({ data }) => {
         variant="h5"
         component="div"
         textAlign="center"
-        sx={{ mb: 5, fontWeight: 700 }}
+        sx={{ mb: 5 }}
         color="primary"
       >
         Categories
@@ -43,21 +49,13 @@ const Category: React.FC<CategoryProps> = ({ data }) => {
               alt={item.name}
               loading="lazy"
             />
-            <ImageListItemBar
+            <ImageListItemBarCustom
               title={item.name}
               position="below"
-              sx={{ textAlign: 'center' }}
             />
           </ImageListItem>
         ))}
       </ImageList>
-      {/* <Grid container spacing={2} sx={{ mt: 3 }}>
-        {data.map((item, index) => (
-          <Grid item xs={2} key={index}>
-            {item.name}
-          </Grid>
-        ))}
-      </Grid> */}
     </Box>
   )
 }

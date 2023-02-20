@@ -6,7 +6,7 @@ import {
   Typography,
   ImageListItem,
   ImageListItemBar,
-  useTheme,
+  useTheme
 } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
@@ -23,6 +23,7 @@ const News: React.FC<CategoryProps> = ({ data }) => {
         component="div"
         textAlign="center"
         sx={{ mb: 5 }}
+        color="primary"
       >
         Latest News
       </Typography>
@@ -43,7 +44,7 @@ const News: React.FC<CategoryProps> = ({ data }) => {
               loading="lazy"
             />
             <ImageListItemBar
-              title={item.name}
+              title={<Typography sx={{ fontWeight: 'bold' }} variant="h6" color="primary">{item.name}</Typography>}
               position="below"
               sx={{ textAlign: 'center' }}
             />

@@ -28,13 +28,13 @@ const StyledSwiper = styled(Swiper, {
     marginLeft: isBanner ? '50px' : 0,
   },
   '& .swiper-pagination-bullet': {
-    background: theme.palette.common.white,
+    background: isBanner ? theme.palette.common.white : theme.palette.primary.main,
   },
   '& .swiper-button-prev:after': {
-    color: theme.palette.common.white,
+    color: isBanner ? theme.palette.common.white : theme.palette.primary.main,
   },
   '& .swiper-button-next:after': {
-    color: theme.palette.common.white,
+    color: isBanner ? theme.palette.common.white : theme.palette.primary.main,
   },
   '& swiper-button-next.swiper-button-disabled': {
     opacity: '1 !important',

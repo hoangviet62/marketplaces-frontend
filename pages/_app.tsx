@@ -45,15 +45,22 @@ const theme = createTheme({
   },
   typography: {
     h3: {
-      fontSize: 72,
-      fontWeight: 700,
+      fontSize: '9vh',
+      fontWeight: 'bold',
+      letterSpacing: 0,
     },
     h4: {
-      fontSize: '4vh',
-      fontWeight: 500,
+      fontSize: '7vh',
+      fontWeight: 'bold',
+      letterSpacing: 0,
+    },
+    h5: {
+      fontSize: '3vh',
+      fontWeight: 'bold',
+      letterSpacing: 0,
     },
     body2: {
-      fontSize: 18,
+      fontSize: '1.7vh',
       fontWeight: 400,
     }
   },
