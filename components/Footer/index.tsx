@@ -18,7 +18,7 @@ const FooterDiv = styled(Box)(({ theme }) => ({
 const Footer = () => {
   return (
     <FooterDiv id="footer" component="div">
-      <Typography variant="body1">
+      <Typography variant="caption">
         © {new Date().getFullYear() + ' '}
         All rights reserved. See our&nbsp;
         <TermLink href="#">Terms And Conditions</TermLink>,&nbsp;

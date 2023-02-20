@@ -35,8 +35,9 @@ const roboto = localFont({
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#026928',
-      dark: '#597226',
+      light: '#709503',
+      main: '#049458',
+      dark: '#048a52',
     },
     common: {
       black: '#000000',

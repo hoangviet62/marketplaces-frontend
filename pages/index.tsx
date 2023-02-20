@@ -12,26 +12,50 @@ import categories from './home/components/category/data.json'
 
 const items: CardProps[] = [
   {
-    image: 'https://picsum.photos/200/300',
-    title: 'Test1',
+    image: 'https://picsum.photos/1920/1080',
+    title: 'Random Name #1',
     content:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis, laudantium.',
   },
   {
-    image: 'https://picsum.photos/200/300',
+    image: 'https://picsum.photos/1920/1080',
     title: 'Random Name #2',
     content:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis, laudantium.',
   },
   {
-    image: 'https://picsum.photos/200/300',
-    title: 'Random Name #2',
+    image: 'https://picsum.photos/1920/1080',
+    title: 'Random Name #3',
     content:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis, laudantium.',
   },
   {
-    image: 'https://picsum.photos/200/300',
-    title: 'Random Name #2',
+    image: 'https://picsum.photos/1920/1080',
+    title: 'Random Name #4',
+    content:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis, laudantium.',
+  },
+  {
+    image: 'https://picsum.photos/1920/1080',
+    title: 'Random Name #5',
+    content:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis, laudantium.',
+  },
+  {
+    image: 'https://picsum.photos/1920/1080',
+    title: 'Random Name #6',
+    content:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis, laudantium.',
+  },
+  {
+    image: 'https://picsum.photos/1920/1080',
+    title: 'Random Name #7',
+    content:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis, laudantium.',
+  },
+  {
+    image: 'https://picsum.photos/1920/1080',
+    title: 'Random Name #8',
     content:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis, laudantium.',
   },

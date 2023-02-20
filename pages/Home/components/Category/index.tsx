@@ -50,7 +50,7 @@ const Category: React.FC<CategoryProps> = ({ data }) => {
               loading="lazy"
             />
             <ImageListItemBarCustom
-              title={item.name}
+              title={<Typography sx={{ fontWeight: 'bold' }} variant="h6" color="primary">{item.name}</Typography>}
               position="below"
             />
           </ImageListItem>
