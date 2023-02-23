@@ -1,6 +1,6 @@
 import UnauthorizedPage from '@/components/UnauthorizedPage'
 import { User } from '@/enums'
-import { useUser } from '@/hooks/useAuth'
+import { useUser, AuthLoader } from '@/hooks/useAuth'
 import { useRouter } from 'next/router'
 
 const ProtectedRoute = ({ children }) => {
@@ -8,10 +8,15 @@ const ProtectedRoute = ({ children }) => {
   const router = useRouter()
 
   if (
-    (router.pathname.includes(User.ADMIN) && data?.role !== !User.ADMIN) ||
-    (router.pathname.includes(User.CUSTOMER) && data?.role !== !User.CUSTOMER)
+    (router.pathname.includes(User.ADMIN) && data?.data?.role !== User.ADMIN) ||
+    (router.pathname.includes(User.CUSTOMER) &&
+      data?.data?.role !== User.CUSTOMER)
   ) {
-    return <UnauthorizedPage />
+    return (
+      <AuthLoader renderLoading={() => <div></div>}>
+        <UnauthorizedPage />
+      </AuthLoader>
+    )
   }
 
   return children

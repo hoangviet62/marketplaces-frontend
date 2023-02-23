@@ -1,6 +1,7 @@
 import { InputProps } from '@/interfaces/input-props'
 import { TextField } from '@mui/material'
 import * as React from 'react'
+import UploadFiles from '../UploadFiles'
 
 const Input: React.FC<InputProps> = ({
   errors,
@@ -8,8 +9,10 @@ const Input: React.FC<InputProps> = ({
   fieldName,
   labelName,
   type = 'text',
+  multiple = false,
+  control
 }) => {
-  return (
+  const renderTextField = () => (
     <TextField
       sx={{ width: '100%', mb: 3 }}
       label={labelName}
@@ -19,6 +22,19 @@ const Input: React.FC<InputProps> = ({
       type={type}
     />
   )
+
+  const renderFileField = () => (
+    <UploadFiles
+      errors={errors}
+      register={register}
+      fieldName={fieldName}
+      labelName={labelName}
+      control={control}
+      multiple={multiple}
+    />
+  )
+
+  return <>{type === 'file' ? renderFileField() : renderTextField()}</>
 }
 
 export default Input

@@ -17,8 +17,9 @@ import Input from '@/components/Input'
 import { useRouter } from 'next/router'
 import { LoginPayload } from '@/interfaces/auth'
 import { trimFormField } from '@/utils/trim-form-field'
-import { useLogin, useLogout, useUser } from '@/hooks/useAuth'
+import { useLogin } from '@/hooks/useAuth'
 import Container from '@/components/Container'
+import { User } from '@/enums'
 
 const Login: NextPage = () => {
   const {
@@ -29,19 +30,17 @@ const Login: NextPage = () => {
     resolver: zodResolver(validators),
   })
   const login = useLogin()
-  const user = useUser({})
   const router = useRouter()
 
   const onSubmit = (data: LoginPayload) => {
     const trimedForm = trimFormField(data)
     login.mutate(trimedForm, {
-      onSuccess: () => {
-        if (user.data?.role === 'admin') {
+      onSuccess: ({ data }) => {
+        if (data?.role === User.ADMIN) {
           router.push('/admin')
-        } else if (user.data?.role === 'customer') {
+        } else if (data?.role === User.CUSTOMER) {
           router.push('/customers')
         } else {
-          console.log("aaa");
           router.push('/')
         }
       },

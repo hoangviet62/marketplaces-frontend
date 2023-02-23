@@ -9,3 +9,9 @@ export interface CategoryProps {
   // should be CategoryInterface[]
   data: any[]
 }
+
+export interface CategoryPayload {
+  name: string;
+  images?: File[];
+  medias?: File[];
+}

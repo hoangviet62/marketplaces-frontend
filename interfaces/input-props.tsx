@@ -4,6 +4,7 @@ import {
   FieldError,
   UseFormRegister,
   FieldValues,
+  Control,
 } from 'react-hook-form'
 
 export interface InputProps {
@@ -12,4 +13,6 @@ export interface InputProps {
   errors: Partial<DeepMap<any, FieldError>>
   register: UseFormRegister<FieldValues> | any
   type?: string
+  multiple?: boolean
+  control?: Control<any, any>
 }

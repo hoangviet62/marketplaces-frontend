@@ -7,7 +7,7 @@ import { storage } from '@/utils/cookie'
 
 export function handleUserResponse(resp) {
   const {
-    auth_token
+    data: { auth_token }
   } = resp
   storage.setToken(auth_token)
   return auth_token
@@ -25,8 +25,13 @@ async function userFn() {
 
 async function loginFn(data: LoginPayload) {
   const response = await login(data)
-  const token = handleUserResponse(response)
-  return token
+  handleUserResponse(response)
+  try {
+    const user = await getUserProfile();
+    return user;
+  } catch {
+    throw new Error("abc")
+  }
 }
 
 async function registerFn(data: RegisterPayload) {
@@ -46,4 +51,6 @@ const authConfig = {
   logoutFn,
 }
 
-export const { useUser, useLogin, useRegister, useLogout, AuthLoader } = configureAuth(authConfig)
+const { useUser, useLogin, useRegister, useLogout, AuthLoader } = configureAuth(authConfig)
+
+export { useUser, useLogin, useRegister, useLogout, AuthLoader, userFn }

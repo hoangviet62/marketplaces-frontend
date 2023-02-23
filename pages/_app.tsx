@@ -5,9 +5,13 @@ import Footer from '@/components/Footer'
 import { createTheme } from '@mui/material'
 import { ThemeProvider } from '@mui/system'
 import { ReactQueryProvider } from '@/lib/react-query'
-import { common } from '@mui/material/colors'
 import ProtectedRoute from '@/hoc/protected-route'
 import localFont from '@next/font/local'
+import Toast from '@/components/Toast'
+import 'react-toastify/dist/ReactToastify.css'
+import { LoadingContext } from '@/context/loading'
+import { useState } from 'react'
+import Loading from '@/components/Loading'
 
 const roboto = localFont({
   src: [
@@ -57,16 +61,18 @@ const theme = createTheme({
     body2: {
       fontSize: 18,
       fontWeight: 400,
-    }
+    },
   },
   components: {
     MuiCssBaseline: {
-      styleOverrides: {}
-    }
-  }
+      styleOverrides: {},
+    },
+  },
 })
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [loading, setLoading] = useState<boolean>(false)
+
   return (
     <>
       <Head>
@@ -78,15 +84,24 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <ReactQueryProvider>
         <ThemeProvider theme={theme}>
-          <div id="holder" className={roboto.className}>
-            <Header />
-            <div id="body">
-              <ProtectedRoute>
-                <Component {...pageProps} />
-              </ProtectedRoute>
+          <LoadingContext.Provider
+            value={{
+              loading: loading,
+              setLoading: setLoading,
+            }}
+          >
+            <div id="holder" className={roboto.className}>
+              <Header />
+              <div id="body">
+                <ProtectedRoute>
+                  <Component {...pageProps} />
+                  {loading && <Loading />}
+                </ProtectedRoute>
+                <Toast />
+              </div>
+              <Footer />
             </div>
-            <Footer />
-          </div>
+          </LoadingContext.Provider>
         </ThemeProvider>
       </ReactQueryProvider>
     </>
