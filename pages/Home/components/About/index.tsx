@@ -2,8 +2,8 @@ import * as React from 'react'
 import { Box, styled, Typography } from '@mui/material'
 
 const CustomWrapper = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.success.light,
-  boxShadow: `0 0 0 100vmax ${theme.palette.success.light}`,
+  backgroundColor: theme.palette.primary.dark,
+  boxShadow: `0 0 0 100vmax ${theme.palette.primary.dark}`,
   clipPath: 'inset(0 -100vmax)',
   color: theme.palette.common.white
 }))

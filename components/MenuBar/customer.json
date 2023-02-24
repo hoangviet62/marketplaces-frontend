@@ -1,0 +1,102 @@
+[
+  {
+    "name": "Category",
+    "subItems": [
+      {
+        "name": "Antennas",
+        "path": "/login",
+        "subItems": []
+      },
+      {
+        "name": "Broadband Radios, Accessories & Services",
+        "path": "/login",
+        "subItems": []
+      },
+      {
+        "name": "Cable Products",
+        "path": "/login",
+        "subItems": []
+      },
+      {
+        "name": "Infrastructure Hardwares",
+        "path": "/login",
+        "subItems": []
+      }
+    ]
+  },
+  {
+    "name": "Products",
+    "subItems": [
+      {
+        "name": "Antennas 1",
+        "path": "/login",
+        "subItems": []
+      },
+      {
+        "name": "Broadband Radios, Accessories & Services",
+        "path": "/login",
+        "subItems": []
+      },
+      {
+        "name": "Cable Products",
+        "path": "/login",
+        "subItems": []
+      },
+      {
+        "name": "Infrastructure Hardwares",
+        "path": "/login",
+        "subItems": []
+      }
+    ]
+  },
+  {
+    "name": "Suppliers",
+    "subItems": [
+      {
+        "name": "Antennas",
+        "path": "/login",
+        "subItems": []
+      },
+      {
+        "name": "Broadband Radios, Accessories & Services",
+        "path": "/login",
+        "subItems": []
+      },
+      {
+        "name": "Cable Products",
+        "path": "/login",
+        "subItems": []
+      },
+      {
+        "name": "Infrastructure Hardwares",
+        "path": "/login",
+        "subItems": []
+      }
+    ]
+  },
+  {
+    "name": "Services",
+    "subItems": [
+      {
+        "name": "Antennas",
+        "path": "/login",
+        "subItems": []
+      },
+      {
+        "name": "Broadband Radios, Accessories & Services",
+        "path": "/login",
+        "subItems": []
+      },
+      {
+        "name": "Cable Products",
+        "path": "/login",
+        "subItems": []
+      },
+      {
+        "name": "Infrastructure Hardwares",
+        "path": "/login",
+        "subItems": []
+      }
+    ]
+  }
+]

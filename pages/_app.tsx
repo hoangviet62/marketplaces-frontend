@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import MenuBar from '@/components/MenuBar'
 import { createTheme } from '@mui/material'
 import { ThemeProvider } from '@mui/system'
 import { ReactQueryProvider } from '@/lib/react-query'
@@ -42,8 +43,9 @@ const roboto = localFont({
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#026928',
-      dark: '#597226',
+      light: '#6543c5',
+      main: '#412a81',
+      dark: '#2e1373',
     },
     common: {
       black: '#000000',
@@ -52,15 +54,22 @@ const theme = createTheme({
   },
   typography: {
     h3: {
-      fontSize: 72,
-      fontWeight: 700,
+      fontSize: '9vh',
+      fontWeight: 'bold',
+      letterSpacing: 0,
     },
     h4: {
-      fontSize: '4vh',
-      fontWeight: 500,
+      fontSize: '7vh',
+      fontWeight: 'bold',
+      letterSpacing: 0,
+    },
+    h5: {
+      fontSize: '3vh',
+      fontWeight: 'bold',
+      letterSpacing: 0,
     },
     body2: {
-      fontSize: 18,
+      fontSize: '1.7vh',
       fontWeight: 400,
     },
   },
@@ -94,6 +103,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             >
               <div id="holder" className={roboto.className}>
                 <Header />
+                <MenuBar />
                 <div id="body">
                   <ProtectedRoute>
                     <Component {...pageProps} />

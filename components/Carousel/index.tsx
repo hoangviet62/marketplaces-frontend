@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
+import { Navigation, Pagination, Scrollbar, A11y, EffectFade } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { CarouselProps } from '@/interfaces/carousel-props'
@@ -28,13 +28,13 @@ const StyledSwiper = styled(Swiper, {
     marginLeft: isBanner ? '50px' : 0,
   },
   '& .swiper-pagination-bullet': {
-    background: theme.palette.common.white,
+    background: isBanner ? theme.palette.common.white : theme.palette.primary.dark,
   },
   '& .swiper-button-prev:after': {
-    color: theme.palette.common.white,
+    color: isBanner ? theme.palette.common.white : theme.palette.primary.dark,
   },
   '& .swiper-button-next:after': {
-    color: theme.palette.common.white,
+    color: isBanner ? theme.palette.common.white : theme.palette.primary.dark,
   },
   '& swiper-button-next.swiper-button-disabled': {
     opacity: '1 !important',
@@ -62,6 +62,9 @@ const Carousel: React.FC<CarouselProps> = ({
     callback && callback()
   }
 
+  const AddInComponents = [Navigation, Scrollbar, A11y, EffectFade];
+  if (isBanner) AddInComponents.push(Pagination)
+
   return (
     <Box position="relative">
       <StyledSwiper
@@ -77,21 +80,34 @@ const Carousel: React.FC<CarouselProps> = ({
           prevEl: '.swiper-button-prev',
         }}
         breakpoints={{
-          600: {
-            spaceBetween: '0',
-            slidesPerView: itemsPerViewWithMobileDevice,
+          128: {
+            slidesPerView: 1,
+          },
+          256: {
+            slidesPerView: 1,
+          },
+          320: {
+            slidesPerView: 1,
+          },
+          480: {
+            slidesPerView: 1,
+          },
+          640: {
+            slidesPerView: isBanner ? 1 : 2,
+            spaceBetween: 10
           },
           1024: {
-            slidesPerView: itemsPerView,
+            slidesPerView: isBanner ? 1 : 4,
+            spaceBetween: 10
           },
         }}
-        allowTouchMove={false}
-        spaceBetween={30}
+        // allowTouchMove={false}
+        // spaceBetween={30}
         slidesPerView={itemsPerView}
-        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        modules={AddInComponents}
         onReachEnd={() => setLastItem(true)}
         style={{
-          margin: !isBanner ? '0 80px' : '0',
+          margin: !isBanner ? '0 50px' : '0',
           position: 'unset',
         }}
       >

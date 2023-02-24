@@ -21,6 +21,5 @@ export async function getAllCategoriesApi(): Promise<any> {
 }
 
 export async function getCategoryById(id): Promise<any> {
-  console.log("id", id)
   return axiosClient.get(`${process.env.apiUrl}/${endpoint}/${id}`)
 }

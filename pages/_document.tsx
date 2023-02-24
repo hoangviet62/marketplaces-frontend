@@ -7,7 +7,7 @@ export default function Document() {
       <Head>
         <link rel="stylesheet" href="/css/global.css" />
       </Head>
-      <body style={{ margin: '0 !important', background: '#f2f2f0' }}>
+      <body style={{ margin: '0 !important', background: '#f0eef5' }}>
         <Main />
         <NextScript />
       </body>

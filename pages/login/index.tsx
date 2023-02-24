@@ -119,7 +119,7 @@ const Login: NextPage = () => {
   )
 
   return (
-    <Container>
+    <Container sx={{ p: 3 }}>
       <Grid
         spacing={3}
         container
