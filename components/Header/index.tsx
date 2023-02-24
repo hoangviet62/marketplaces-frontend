@@ -18,6 +18,7 @@ import LogoDevIcon from '@mui/icons-material/LogoDev';
 import HistoryIcon from '@mui/icons-material/History';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Link from '@mui/material/Link';
+import Container from '@/components/Container';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -57,6 +58,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
       width: '20ch',
     },
   },
+}));
+
+const StyledAppBar = styled(AppBar)(({ theme }) => ({
+  background: theme.palette.primary.dark,
 }));
 
 export default function PrimarySearchAppBar() {
@@ -161,7 +166,7 @@ export default function PrimarySearchAppBar() {
   return (
     <div id="header">
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <StyledAppBar position="static">
           <Toolbar sx={{ height: 80 }}>
             <IconButton
               edge="start"
@@ -228,7 +233,7 @@ export default function PrimarySearchAppBar() {
               </IconButton>
             </Box>
           </Toolbar>
-        </AppBar>
+        </StyledAppBar>
         {renderMobileMenu}
         {renderMenu}
       </Box >

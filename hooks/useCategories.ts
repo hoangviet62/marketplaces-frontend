@@ -22,8 +22,6 @@ function useCategories() {
     {
       select: (data) => data.items,
       onError: (err) => {
-        console.log('Abc')
-        console.log(err)
         // error(err);
       },
     }

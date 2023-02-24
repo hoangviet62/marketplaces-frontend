@@ -35,7 +35,7 @@ const Login: NextPage = () => {
   const onSubmit = (data: LoginPayload) => {
     const trimedForm = trimFormField(data)
     login.mutate(trimedForm, {
-      onSuccess: () => console.log('aaa'),
+
     })
   }
 
@@ -111,7 +111,7 @@ const Login: NextPage = () => {
   )
 
   return (
-    <Container>
+    <Container sx={{ p: 3 }}>
       <Grid spacing={3} container
         direction="row"
         justifyContent="center"

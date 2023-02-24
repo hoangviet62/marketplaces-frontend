@@ -29,6 +29,16 @@ body {
   right: 0;
 }
 
+@media screen and (min-width: 600px) {
+  #body {
+    padding-bottom: 30px;
+  }
+
+  #footer {
+    height: 30px;
+  }
+}
+
 .MuiCard-root {
   display: flex;
   flex-direction: column;

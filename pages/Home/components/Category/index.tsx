@@ -12,7 +12,7 @@ import {
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 const ImageListItemBarCustom = styled(ImageListItemBar)(({ theme }) => ({
-  color: theme.palette.primary.main,
+  color: theme.palette.primary.dark,
   textAlign: 'center',
 }));
 

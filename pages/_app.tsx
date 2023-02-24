@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import MenuBar from '@/components/MenuBar'
 import { createTheme } from '@mui/material'
 import { ThemeProvider } from '@mui/system'
 import { ReactQueryProvider } from '@/lib/react-query'
@@ -35,9 +36,9 @@ const roboto = localFont({
 const theme = createTheme({
   palette: {
     primary: {
-      light: '#709503',
-      main: '#049458',
-      dark: '#048a52',
+      light: '#6543c5',
+      main: '#412a81',
+      dark: '#2e1373',
     },
     common: {
       black: '#000000',
@@ -86,6 +87,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ThemeProvider theme={theme}>
           <div id="holder" className={roboto.className}>
             <Header />
+            <MenuBar />
             <div id="body">
               <Component {...pageProps} />
             </div>

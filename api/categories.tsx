@@ -16,6 +16,5 @@ export async function deleteCategoryApi(id: string): Promise<any> {
 }
 
 export async function getAllCategoriesApi(): Promise<any> {
-  console.log(process.env.NEXT_PUBLIC_APP_API_URL);
   return axiosClient.get(`${process.env.NEXT_PUBLIC_APP_API_URL}/${endpoint}`)
 }
