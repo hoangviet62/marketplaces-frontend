@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { LoadingContext } from '@/context/loading'
 import { useState } from 'react'
 import Loading from '@/components/Loading'
+import ModalProvider from '@/providers/modal'
 
 const roboto = localFont({
   src: [
@@ -84,24 +85,26 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <ReactQueryProvider>
         <ThemeProvider theme={theme}>
-          <LoadingContext.Provider
-            value={{
-              loading: loading,
-              setLoading: setLoading,
-            }}
-          >
-            <div id="holder" className={roboto.className}>
-              <Header />
-              <div id="body">
-                <ProtectedRoute>
-                  <Component {...pageProps} />
-                  {loading && <Loading />}
-                </ProtectedRoute>
-                <Toast />
+          <ModalProvider>
+            <LoadingContext.Provider
+              value={{
+                loading: loading,
+                setLoading: setLoading,
+              }}
+            >
+              <div id="holder" className={roboto.className}>
+                <Header />
+                <div id="body">
+                  <ProtectedRoute>
+                    <Component {...pageProps} />
+                    {loading && <Loading />}
+                  </ProtectedRoute>
+                  <Toast />
+                </div>
+                <Footer />
               </div>
-              <Footer />
-            </div>
-          </LoadingContext.Provider>
+            </LoadingContext.Provider>
+          </ModalProvider>
         </ThemeProvider>
       </ReactQueryProvider>
     </>

@@ -8,7 +8,7 @@ export const defaultToastOptions = {
   pauseOnHover: true,
   draggable: true,
   progress: undefined,
-  theme: "light",
+  theme: "colored",
 }
 
 export const toast = (content: string, type: string, options: object = defaultToastOptions) => {
