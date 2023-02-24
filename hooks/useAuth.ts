@@ -1,31 +1,37 @@
 import { configureAuth } from 'react-query-auth';
 import { login, register, getUserProfile } from '@/api/auth'
 
-import { User, RegisterPayload, LoginPayload } from '@/interfaces/auth'
+import { RegisterPayload, LoginPayload } from '@/interfaces/auth'
 
 import { storage } from '@/utils/cookie'
 
 export function handleUserResponse(resp) {
   const {
-    data: { token, user },
+    data: { auth_token }
   } = resp
-  storage.setToken(token)
-  return token
+  storage.setToken(auth_token)
+  return auth_token
 }
 
 async function userFn() {
-  // let user = null;
-  // if (storage.getToken()) {
-  //   const data = await getUserProfile();
-  //   user = data;
-  // }
-  return storage.getToken()
+  let user = null;
+  if (storage.getToken()) {
+    const data = await getUserProfile();
+    user = data;
+  }
+
+  return user
 }
 
 async function loginFn(data: LoginPayload) {
   const response = await login(data)
-  const token = handleUserResponse(response)
-  return token
+  handleUserResponse(response)
+  try {
+    const user = await getUserProfile();
+    return user;
+  } catch {
+    throw new Error("abc")
+  }
 }
 
 async function registerFn(data: RegisterPayload) {
@@ -45,4 +51,6 @@ const authConfig = {
   logoutFn,
 }
 
-export const { useUser, useLogin, useRegister, useLogout, AuthLoader } = configureAuth(authConfig)
+const { useUser, useLogin, useRegister, useLogout, AuthLoader } = configureAuth(authConfig)
+
+export { useUser, useLogin, useRegister, useLogout, AuthLoader, userFn }

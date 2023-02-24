@@ -1,7 +1,7 @@
 export interface AuthResponse {
-  Status: string
-  AuthToken: string
-  ErrorMessage: string
+  status: string
+  auth_token: string
+  error_message: string
 }
 
 export interface LoginPayload {
@@ -21,4 +21,7 @@ export interface User {
   id: string
   email: string
   username: string
+  role: string
+  status: string
+  mobile: string
 }

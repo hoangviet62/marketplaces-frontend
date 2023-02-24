@@ -1,10 +1,12 @@
+import { ContainerProps } from '@/interfaces/container-props'
 import { Container as MuiContainer } from '@mui/material'
 import * as React from 'react'
 
-const Container = ({ children, maxWidth = 'md', sx = {} }: { children: any, maxWidth: any, sx: any }) => {
-  console.log(maxWidth)
+const Container: React.FC<ContainerProps> = ({ children, maxWidth = 'md' }) => {
   return (
-    <MuiContainer sx={sx} maxWidth={maxWidth} >{children}</MuiContainer>
+    <MuiContainer sx={{ p: 5 }} maxWidth={maxWidth}>
+      {children}
+    </MuiContainer>
   )
 }
 

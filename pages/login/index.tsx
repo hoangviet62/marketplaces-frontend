@@ -7,7 +7,7 @@ import {
   CardActions,
   Box,
   Grid,
-  Paper
+  Paper,
 } from '@mui/material'
 import { NextPage } from 'next'
 import { useForm } from 'react-hook-form'
@@ -17,25 +17,33 @@ import Input from '@/components/Input'
 import { useRouter } from 'next/router'
 import { LoginPayload } from '@/interfaces/auth'
 import { trimFormField } from '@/utils/trim-form-field'
-import { useLogin, useLogout } from '@/hooks/useAuth'
+import { useLogin } from '@/hooks/useAuth'
 import Container from '@/components/Container'
+import { User } from '@/enums'
 
 const Login: NextPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<LoginPayload>({
     resolver: zodResolver(validators),
   })
   const login = useLogin()
-
   const router = useRouter()
 
   const onSubmit = (data: LoginPayload) => {
     const trimedForm = trimFormField(data)
     login.mutate(trimedForm, {
-
+      onSuccess: ({ data }) => {
+        if (data?.role === User.ADMIN) {
+          router.push('/admin')
+        } else if (data?.role === User.CUSTOMER) {
+          router.push('/customers')
+        } else {
+          router.push('/')
+        }
+      },
     })
   }
 
@@ -43,7 +51,7 @@ const Login: NextPage = () => {
   const renderRegisterCard = () => (
     <Card
       sx={{
-        height: '100%'
+        height: '100%',
       }}
     >
       <CardContent>
@@ -112,10 +120,13 @@ const Login: NextPage = () => {
 
   return (
     <Container sx={{ p: 3 }}>
-      <Grid spacing={3} container
+      <Grid
+        spacing={3}
+        container
         direction="row"
         justifyContent="center"
-        alignItems="stretch">
+        alignItems="stretch"
+      >
         <Grid item xs={12} sm={6}>
           {renderLoginForm()}
         </Grid>

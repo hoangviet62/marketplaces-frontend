@@ -1,8 +1,8 @@
 import axiosClient from './base'
-import { AuthResponse, LoginPayload, RegisterPayload } from '@/interfaces/auth'
+import { AuthResponse, LoginPayload, RegisterPayload, User } from '@/interfaces/auth'
 
-export async function getUserProfile() {
-  return
+export async function getUserProfile(): Promise<User>{
+  return await axiosClient.get(`${process.env.apiUrl}/users/me`)
 }
 
 export async function login(data: LoginPayload): Promise<AuthResponse> {

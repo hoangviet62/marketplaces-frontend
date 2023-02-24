@@ -6,7 +6,14 @@ import MenuBar from '@/components/MenuBar'
 import { createTheme } from '@mui/material'
 import { ThemeProvider } from '@mui/system'
 import { ReactQueryProvider } from '@/lib/react-query'
+import ProtectedRoute from '@/hoc/protected-route'
 import localFont from '@next/font/local'
+import Toast from '@/components/Toast'
+import 'react-toastify/dist/ReactToastify.css'
+import { LoadingContext } from '@/context/loading'
+import { useState } from 'react'
+import Loading from '@/components/Loading'
+import ModalProvider from '@/providers/modal'
 
 const roboto = localFont({
   src: [
@@ -43,7 +50,7 @@ const theme = createTheme({
     common: {
       black: '#000000',
       white: '#ffffff',
-    }
+    },
   },
   typography: {
     h3: {
@@ -64,16 +71,18 @@ const theme = createTheme({
     body2: {
       fontSize: '1.7vh',
       fontWeight: 400,
-    }
+    },
   },
   components: {
     MuiCssBaseline: {
-      styleOverrides: {}
-    }
-  }
+      styleOverrides: {},
+    },
+  },
 })
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [loading, setLoading] = useState<boolean>(false)
+
   return (
     <>
       <Head>
@@ -85,14 +94,27 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <ReactQueryProvider>
         <ThemeProvider theme={theme}>
-          <div id="holder" className={roboto.className}>
-            <Header />
-            <MenuBar />
-            <div id="body">
-              <Component {...pageProps} />
-            </div>
-            <Footer />
-          </div>
+          <ModalProvider>
+            <LoadingContext.Provider
+              value={{
+                loading: loading,
+                setLoading: setLoading,
+              }}
+            >
+              <div id="holder" className={roboto.className}>
+                <Header />
+                <MenuBar />
+                <div id="body">
+                  <ProtectedRoute>
+                    <Component {...pageProps} />
+                    {loading && <Loading />}
+                  </ProtectedRoute>
+                  <Toast />
+                </div>
+                <Footer />
+              </div>
+            </LoadingContext.Provider>
+          </ModalProvider>
         </ThemeProvider>
       </ReactQueryProvider>
     </>

@@ -1,17 +1,17 @@
 import axios from 'axios'
-import cookie from 'js-cookie'
+import { storage } from '@/utils/cookie';
 
 const axiosClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_APP_API_URL,
   headers: {
-    'Content-Type': 'application/json',
+    // 'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
   },
 })
 
 axiosClient.interceptors.request.use(
   (config) => {
-    const token = cookie.get('token')
+    const token = storage.getToken();
     if (token !== 'undefined') config.headers['Authorization'] = `Bearer ${token}`
     return config
   },

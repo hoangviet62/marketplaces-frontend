@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { CategoryProps } from '@/interfaces/category-props'
+import { CategoryProps } from '@/interfaces/category'
 import {
   Box,
   ImageList,
