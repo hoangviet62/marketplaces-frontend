@@ -34,6 +34,12 @@ const AdminCreateCategory: NextPage = () => {
       }
     }
 
+    if (data.medias) {
+      for (const file of data?.medias) {
+        formData.append('medias', file)
+      }
+    }
+    
     mutate(formData)
   }
 

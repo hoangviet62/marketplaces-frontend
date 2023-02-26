@@ -1,15 +1,14 @@
-import { getCategoryById } from "@/api/categories";
+import { getAllProductsApi } from "@/api/products";
 import { toast } from "@/utils/toast";
 import { useQuery } from "@tanstack/react-query";
 
-const useCategory = (id) => {
-    return useQuery(['categories', id], () => getCategoryById(id), {
+const useProducts = () => {
+    return useQuery(['Products'], getAllProductsApi, {
         select: (data) => data.data,
-        enabled: Boolean(id),
         onError: (err) => {
             toast(err.error, "error")
         },
     })
 };
 
-export default useCategory
+export default useProducts
