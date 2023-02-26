@@ -1,25 +1,26 @@
-import { deleteCategoryApi } from "@/api/categories";
+import { deleteProductApi } from "@/api/products";
 import { useLoading } from "@/context/loading";
 import { useModal } from "@/context/modal";
 import { toast } from "@/utils/toast";
 import { useMutation } from "@tanstack/react-query";
-import useCategories from "./useCategories";
+import useProducts from "./useProducts";
 
-const useDeleteCategory = () => {
+const useDeleteProduct = () => {
   const { setLoading } = useLoading()
   const { hideModal } = useModal()
-  const { refetch } = useCategories()
 
-  return useMutation(deleteCategoryApi, {
+  const { refetch } = useProducts()
+
+  return useMutation(deleteProductApi, {
     onMutate: () => {
       setLoading(true)
     },
     onSuccess: () => {
-      toast("Delete Category successfully", `success`)
+      toast("Delete Product successfully", `success`)
       refetch()
     },
     onError: () => {
-      toast("Failed to delete Category", `error`)
+      toast("Failed to delete Product", `error`)
     },
     onSettled: () => {
       hideModal()
@@ -28,4 +29,4 @@ const useDeleteCategory = () => {
   })
 };
 
-export default useDeleteCategory;
+export default useDeleteProduct;

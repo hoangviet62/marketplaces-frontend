@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { storage } from '@/utils/cookie';
+import { storage } from '@/utils/cookie'
 
 const axiosClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_APP_API_URL,
@@ -11,8 +11,9 @@ const axiosClient = axios.create({
 
 axiosClient.interceptors.request.use(
   (config) => {
-    const token = storage.getToken();
-    if (token !== 'undefined') config.headers['Authorization'] = `Bearer ${token}`
+    const token = storage.getToken()
+    if (token !== 'undefined')
+      config.headers['Authorization'] = `Bearer ${token}`
     return config
   },
   (error) => {
@@ -25,12 +26,13 @@ axiosClient.interceptors.response.use(
     return response?.data
   },
   function (error) {
+    return Promise.reject(error?.response?.data)
     // let res = error.response
     //   if (res.status == 401) {
     //     window.location.href = “https://example.com/login”;
     //   }
     //   console.error(“Looks like there was a problem. Status Code: “ + res.status);
-    return Promise.reject(error)
+    // return Promise.reject(error)
   }
 )
 

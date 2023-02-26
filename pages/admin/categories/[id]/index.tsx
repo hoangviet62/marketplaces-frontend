@@ -11,6 +11,7 @@ import { trimFormField } from '@/utils/trim-form-field'
 import useParams from '@/hooks/Params'
 import useCategory from '@/hooks/Category/useCategory'
 import { useEffect } from 'react'
+import { useLoading } from '@/context/loading'
 
 const AdminCategory: NextPage = () => {
   const {
@@ -25,7 +26,12 @@ const AdminCategory: NextPage = () => {
 
   const { mutate } = useUpdateCategory()
   const { id } = useParams()
-  const { data } = useCategory(id)
+  const { data, isFetching } = useCategory(id)
+  const { setLoading } = useLoading()
+
+  useEffect(() => {
+    setLoading(isFetching)
+  }, [isFetching])
 
   useEffect(() => {
     if (!data?.name) return
@@ -36,7 +42,7 @@ const AdminCategory: NextPage = () => {
   const onSubmit = (data: CategoryPayload) => {
     const trimedForm = trimFormField(data)
     const formData = new FormData()
-    formData.append("name", trimedForm.name)
+    formData.append('name', trimedForm.name)
     mutate({ data: formData, id })
   }
 
