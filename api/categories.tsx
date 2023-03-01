@@ -3,11 +3,11 @@ import axiosClient from './base'
 
 const endpoint = 'categories'
 
-export async function createCategoryApi(data): Promise<any> {
+export async function createCategoryApi(data: any): Promise<any> {
   return axiosClient.post(`${process.env.apiUrl}/${endpoint}`, data)
 }
 
-export async function updateCategoryApi(params): Promise<any> {
+export async function updateCategoryApi(params: any): Promise<any> {
   const { data, id } = params
   return axiosClient.patch(`${process.env.apiUrl}/${endpoint}/${id}`, data)
 }
@@ -17,9 +17,9 @@ export async function deleteCategoryApi(id: string): Promise<any> {
 }
 
 export async function getAllCategoriesApi(): Promise<any> {
-  return axiosClient.get(`${process.env.apiUrl}/${endpoint}?sort=desc`)
+  return axiosClient.get(`${process.env.apiUrl}/${endpoint}`)
 }
 
-export async function getCategoryById(id): Promise<any> {
+export async function getCategoryById(id: number): Promise<any> {
   return axiosClient.get(`${process.env.apiUrl}/${endpoint}/${id}`)
 }

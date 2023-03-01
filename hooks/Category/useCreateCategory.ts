@@ -1,20 +1,22 @@
-import { useLoading } from './../../context/loading/index';
+import { useLoading } from '../../context/loading/index';
 import { createCategoryApi } from "@/api/categories";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { toast } from '@/utils/toast';
+import useCategories from "./useCategories";
 
-const useAddCategory = () => {
+const useCreateCategory = () => {
   const router = useRouter();
   const { setLoading } = useLoading()
+  const { refetch } = useCategories()
 
   return useMutation(createCategoryApi, {
     onMutate: () => {
       setLoading(true)
     },
     onSuccess: () => {
-      router.push("/admin/categories")
       toast("Added Category successfully", `success`)
+      refetch()
     },
     onError: () => {
       toast("Failed to add Category", `error`)
@@ -25,4 +27,4 @@ const useAddCategory = () => {
   })
 };
 
-export default useAddCategory;
+export default useCreateCategory;
