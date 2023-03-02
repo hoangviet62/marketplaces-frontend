@@ -1,13 +1,10 @@
 import {
-  styled,
   Card,
   CardContent,
   Typography,
   Button,
   CardActions,
-  Box,
   Grid,
-  Paper,
 } from '@mui/material'
 import { NextPage } from 'next'
 import { useForm } from 'react-hook-form'
@@ -119,7 +116,7 @@ const Login: NextPage = () => {
   )
 
   return (
-    <Container sx={{ p: 3 }}>
+    <Container>
       <Grid
         spacing={3}
         container

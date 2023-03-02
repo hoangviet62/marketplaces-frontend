@@ -48,7 +48,6 @@ const Carousel: React.FC<CarouselProps> = ({
   callback,
   CardComponent = MediaCard,
   itemsPerView = 1,
-  itemsPerViewWithMobileDevice = 1,
   isBanner = false,
 }) => {
   const [isLastItem, setLastItem] = useState<boolean>(false)

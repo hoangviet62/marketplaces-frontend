@@ -5,9 +5,8 @@ import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import { CardProps } from '@/interfaces/card-props'
 import { styled } from '@mui/material/styles'
-import { Box, Container } from '@mui/material'
 
-const StyledBackgroundCard = styled(Card)(({ theme }) => ({
+const StyledBackgroundCard = styled(Card)(({}) => ({
   marginLeft: '-50px',
   minHeight: '50vh',
   backgroundRepeat: 'no-repeat',

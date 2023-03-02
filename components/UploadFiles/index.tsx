@@ -7,7 +7,7 @@ import {
   Input,
   useMediaQuery,
   useTheme,
-  FormHelperText
+  FormHelperText,
 } from '@mui/material'
 import { useState } from 'react'
 import { useController } from 'react-hook-form'
@@ -28,7 +28,9 @@ const UploadFiles: React.FC<InputProps> = ({
 
   const { field } = useController({ name: fieldName, control })
 
-  const handleFileChange = (event) => {
+  const handleFileChange = (
+    event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { files } = event.target as HTMLInputElement
     if (files) {
       const imageArray = Array.from(files).map((file) =>
@@ -42,7 +44,10 @@ const UploadFiles: React.FC<InputProps> = ({
     }
   }
 
-  const handleDelete = (e, index) => {
+  const handleDelete = (
+    _: React.MouseEvent<HTMLLabelElement, MouseEvent>,
+    index: number
+  ) => {
     const cloneUploadedFilesURL = JSON.parse(JSON.stringify(uploadedFilesURL))
     cloneUploadedFiles.splice(index, 1)
     cloneUploadedFilesURL.splice(index, 1)
@@ -51,6 +56,8 @@ const UploadFiles: React.FC<InputProps> = ({
     setUploadedFiles(cloneUploadedFiles)
     setuploadedFilesURL(cloneUploadedFilesURL)
   }
+
+  console.log(errors)
 
   return (
     <>
@@ -83,8 +90,8 @@ const UploadFiles: React.FC<InputProps> = ({
             // <Card key={index}>
             <ImageListItem key={index}>
               <img
-                height="100%"
                 width="100%"
+                height="100%"
                 src={item}
                 alt="aaa"
                 loading="lazy"

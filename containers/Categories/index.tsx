@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Table from '@/components/Table'
-import { Category, DialogProps } from './types'
+import { Category } from './types'
 import Image from 'next/image'
 import { convertUTCToLocalTime } from '@/utils/time'
 import useCategories from '@/hooks/Category/useCategories'
@@ -34,9 +35,9 @@ const Categories = () => {
     mutateDelete(id)
   }
 
-  const handleCreateConfirm = (e: any, id: any) => {
-    mutateDelete(id)
-  }
+  // const handleCreateConfirm = (e: any, id: any) => {
+  //   mutateDelete(id)
+  // }
 
   const onSubmit = (id: number | undefined, data: CategoryPayload) => {
     const formData = new FormData()
@@ -94,7 +95,7 @@ const Categories = () => {
           <Button
             variant="outlined"
             sx={{ mr: 2 }}
-            onClick={(e) => hideModal()}
+            onClick={hideModal}
           >
             <Typography>Cancel</Typography>
           </Button>
@@ -110,7 +111,9 @@ const Categories = () => {
     </>
   }
 
-  const formModal = (record?: Category) => {
+  console.log("errors", errors);
+
+  const formModal = (record?: any) => {
     const id = record?.original?.id
     const formAction: string = id ? `Edit` : `Create`
 
@@ -141,7 +144,7 @@ const Categories = () => {
           <Button
             variant="outlined"
             sx={{ mr: 2 }}
-            onClick={(e) => hideModal()}
+            onClick={hideModal}
           >
             <Typography>Cancel</Typography>
           </Button>
