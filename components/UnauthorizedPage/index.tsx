@@ -16,7 +16,7 @@ const UnauthorizedPage: React.FC = () => {
   return (
     <StyledContainer>
       <Typography component="p">
-        You don't have permission to view this content.{' '}
+        {"You don't have permission to view this content."}
         <Link href="/">Click here</Link> to redirect to home.
       </Typography>
     </StyledContainer>

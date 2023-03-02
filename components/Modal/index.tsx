@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { Box, Paper } from '@mui/material'
+import { Box } from '@mui/material'
 import MUIModal from '@mui/material/Modal'
 import { ModalProps } from '@/interfaces/modal'
 
 const style = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',

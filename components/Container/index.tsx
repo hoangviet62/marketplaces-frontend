@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Container as MuiContainer } from '@mui/material'
 import * as React from 'react'
 

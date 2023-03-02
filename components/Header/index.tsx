@@ -18,7 +18,6 @@ import LogoDevIcon from '@mui/icons-material/LogoDev';
 import HistoryIcon from '@mui/icons-material/History';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Link from '@mui/material/Link';
-import Container from '@/components/Container';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',

@@ -5,7 +5,7 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <link rel="stylesheet" href="/css/global.css" />
+        {/* <link rel="stylesheet" href="/css/global.css" /> */}
       </Head>
       <body style={{ margin: '0 !important', background: '#f0eef5' }}>
         <Main />

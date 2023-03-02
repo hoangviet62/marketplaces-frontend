@@ -1,41 +1,21 @@
-import React, { useCallback, useMemo, useState, useEffect } from 'react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
-  MRT_Cell,
-  MRT_ColumnDef,
-  MRT_Row,
-} from 'material-react-table';
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-  MenuItem,
-  Stack,
-  TextField,
-  Tooltip,
-} from '@mui/material';
-import { Delete, Edit } from '@mui/icons-material';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useMemo, useState, useEffect } from 'react'
+import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table'
+import { Box, Button, IconButton, Tooltip } from '@mui/material'
+import { Delete, Edit } from '@mui/icons-material'
 import { Props } from './types'
 
 export default function Table<T extends Record<string, any>>(props: Props<T>) {
-  const [createModalOpen, setCreateModalOpen] = useState(false);
-  const [tableData, setTableData] = useState<T[]>([]);
-  const [validationErrors, setValidationErrors] = useState<{
-    [cellId: string]: string;
-  }>({});
+  const [tableData, setTableData] = useState<T[]>([])
+  // const [validationErrors, setValidationErrors] = useState<{
+  //   [cellId: string]: string
+  // }>({})
 
   useEffect(() => {
     if (props.data) setTableData(props.data)
   }, [props.data])
 
-  const columns = useMemo<MRT_ColumnDef<T>[]>(
-    () => props.fields as any,
-    []
-  )
+  const columns = useMemo<MRT_ColumnDef<T>[]>(() => props.fields as any, [])
 
   return (
     <>
@@ -59,15 +39,16 @@ export default function Table<T extends Record<string, any>>(props: Props<T>) {
         editingMode="modal"
         enableEditing
         positionActionsColumn="last"
-        renderRowActions={({ row, table }) => (
+        renderRowActions={({ row }) => (
           <Box sx={{ display: 'flex' }}>
             <Tooltip arrow placement="left" title="Edit">
-              <IconButton onClick={() => props.handleUpdate(row)}>
+              <IconButton onClick={() => props.handleUpdate(row.original)}>
                 <Edit fontSize="small" />
               </IconButton>
             </Tooltip>
             <Tooltip arrow placement="right" title="Delete">
-              <IconButton color="error"
+              <IconButton
+                color="error"
                 onClick={() => props.handleDelete(row.original)}
               >
                 <Delete fontSize="small" />
@@ -78,7 +59,7 @@ export default function Table<T extends Record<string, any>>(props: Props<T>) {
         renderTopToolbarCustomActions={() => (
           <Button
             color="primary"
-            onClick={props.handleCreate}
+            onClick={() => props.handleCreate()}
             variant="contained"
           >
             {props.actionButton.text}
@@ -86,5 +67,5 @@ export default function Table<T extends Record<string, any>>(props: Props<T>) {
         )}
       />
     </>
-  );
-};
+  )
+}

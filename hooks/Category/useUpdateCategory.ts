@@ -2,11 +2,9 @@ import { updateCategoryApi } from "@/api/categories";
 import { useLoading } from "@/context/loading";
 import { toast } from "@/utils/toast";
 import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/router";
 import useCategories from "./useCategories";
 
 const useUpdateCategory = () => {
-  const router = useRouter();
   const { setLoading } = useLoading()
   const { refetch } = useCategories()
 

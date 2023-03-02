@@ -5,6 +5,7 @@ export type LoadingContextType = {
   setLoading: (status: boolean) => void | null;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const defaultSetLoadingFn = (status: boolean) => null
 
 export const LoadingContext = createContext<LoadingContextType>({

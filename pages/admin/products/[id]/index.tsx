@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Container from '@/components/Container'
 import { ProductPayload } from '@/interfaces/product'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -11,7 +12,6 @@ import { trimFormField } from '@/utils/trim-form-field'
 import useParams from '@/hooks/Params'
 import useProduct from '@/hooks/Product/useProduct'
 import { useEffect } from 'react'
-import { useLoading } from '@/context/loading'
 import Select from '@/components/Select'
 import useCategories from '@/hooks/Category/useCategories'
 
@@ -28,13 +28,8 @@ const AdminProduct: NextPage = () => {
 
   const { mutate } = useUpdateProduct()
   const { id } = useParams()
-  const { data, isFetching } = useProduct(id)
-  const { setLoading } = useLoading()
+  const { data } = useProduct(id)
   const { data: categories } = useCategories()
-
-  useEffect(() => {
-    setLoading(isFetching)
-  }, [isFetching])
 
   useEffect(() => {
     if (!data) return
@@ -57,7 +52,7 @@ const AdminProduct: NextPage = () => {
   }
 
   const mapCategoriesOptions = () => {
-    return categories.map((category) => {
+    return categories.map((category: any) => {
       return {
         value: category.ID,
         label: category.name,

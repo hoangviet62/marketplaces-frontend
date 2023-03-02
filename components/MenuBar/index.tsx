@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Box, Menu, styled, Button, IconButton } from '@mui/material'
+import { Box, styled } from '@mui/material'
 import customers from './customer.json'
 import MenuItem from './MenuItem'
 

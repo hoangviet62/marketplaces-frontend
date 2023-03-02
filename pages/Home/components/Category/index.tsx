@@ -7,14 +7,14 @@ import {
   ImageListItem,
   ImageListItemBar,
   useTheme,
-  styled
+  styled,
 } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 const ImageListItemBarCustom = styled(ImageListItemBar)(({ theme }) => ({
   color: theme.palette.primary.dark,
   textAlign: 'center',
-}));
+}))
 
 const Category: React.FC<CategoryProps> = ({ data }) => {
   const theme = useTheme()
@@ -41,20 +41,31 @@ const Category: React.FC<CategoryProps> = ({ data }) => {
         }}
         cols={isMobile ? 2 : 5}
       >
-        {data.map((item, index) => (
-          <ImageListItem key={index}>
-            <img
-              src={`${item.images[0]}?w=248&fit=crop&auto=format`}
-              srcSet={`${item.images[0]}?w=248&fit=crop&auto=format&dpr=2 2x`}
-              alt={item.name}
-              loading="lazy"
-            />
-            <ImageListItemBarCustom
-              title={<Typography sx={{ fontWeight: 'bold' }} variant="h6" color="primary">{item.name}</Typography>}
-              position="below"
-            />
-          </ImageListItem>
-        ))}
+        {data &&
+          data.map((item, index) => (
+            <ImageListItem key={index}>
+              <img
+                height="100%"
+                width="100%"
+                src={`${item.images[0]}?w=248&fit=crop&auto=format`}
+                srcSet={`${item.images[0]}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                alt={item.name}
+                loading="lazy"
+              />
+              <ImageListItemBarCustom
+                title={
+                  <Typography
+                    sx={{ fontWeight: 'bold' }}
+                    variant="h6"
+                    color="primary"
+                  >
+                    {item.name}
+                  </Typography>
+                }
+                position="below"
+              />
+            </ImageListItem>
+          ))}
       </ImageList>
     </Box>
   )

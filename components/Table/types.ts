@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type ActionButton = {
   text: string
 }
@@ -16,7 +17,7 @@ export type Props<T> = {
   actionButton: ActionButton;
   fields: FieldData[];
   data: T[];
-  handleDelete: (row: any) => void;
-  handleCreate: (params: T) => void;
+  handleDelete: (row: T) => void;
+  handleCreate: () => void;
   handleUpdate: (params: T) => void;
 }

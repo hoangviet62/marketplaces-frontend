@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { configureAuth } from 'react-query-auth';
 import { login, register, getUserProfile } from '@/api/auth'
 
@@ -5,7 +6,7 @@ import { RegisterPayload, LoginPayload } from '@/interfaces/auth'
 
 import { storage } from '@/utils/cookie'
 
-export function handleUserResponse(resp) {
+export function handleUserResponse(resp: any) {
   const {
     data: { auth_token }
   } = resp

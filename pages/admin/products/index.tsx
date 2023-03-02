@@ -12,12 +12,18 @@ const AdminProducts: NextPage = () => {
   const { mutate } = useDeleteProduct()
   const router = useRouter()
   const handleClick = () => router.push('/admin/products/create')
-  const handleUpdate = (e, id) => router.push(`/admin/products/${id}`)
-  const handleDeleteConfirm = (e, id) => {
+  const handleUpdate = (
+    _: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: string
+  ) => router.push(`/admin/products/${id}`)
+  const handleDeleteConfirm = (
+    _: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: string
+  ) => {
     mutate(id)
   }
 
-  const renderSimpleModal = (id) => (
+  const renderSimpleModal = (id: string) => (
     <>
       <Typography component="p" align="center">
         Do you want to delete this product?
@@ -33,7 +39,7 @@ const AdminProducts: NextPage = () => {
         </Button>
         <Button
           variant="contained"
-          onClick={(e) => hideModal()}
+          onClick={hideModal}
           sx={{ backgroundColor: (theme) => theme.palette.common.black }}
         >
           <Typography component="p">Cancel</Typography>
@@ -42,7 +48,10 @@ const AdminProducts: NextPage = () => {
     </>
   )
 
-  const handleDelete = (e, id) => {
+  const handleDelete = (
+    _: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: string
+  ) => {
     setModalContent(renderSimpleModal(id))
     showModal()
   }
@@ -61,14 +70,14 @@ const AdminProducts: NextPage = () => {
           <>
             <Button
               variant="contained"
-              onClick={(e) => handleUpdate(e, data[0]?.ID)}
+              onClick={(e) => handleUpdate(e, data[0]?.id)}
               sx={{ mr: 3 }}
             >
               <Typography component="p">Update</Typography>
             </Button>
             <Button
               variant="contained"
-              onClick={(e) => handleDelete(e, data[0]?.ID)}
+              onClick={(e) => handleDelete(e, data[0]?.id)}
               color="error"
             >
               <Typography component="p">Delete</Typography>

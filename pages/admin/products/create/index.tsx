@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Container from '@/components/Container'
 import { ProductPayload } from '@/interfaces/product'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -47,7 +48,7 @@ const AdminCreateProduct: NextPage = () => {
   }
 
   const mapCategoriesOptions = () => {
-    return data.map((category) => {
+    return data.map((category: any) => {
       return {
         value: category.ID,
         label: category.name,
