@@ -7,7 +7,7 @@ import About from '@/pages/Home/components/About'
 import Category from '@/pages/Home/components/Category'
 import News from '@/pages/Home/components/News'
 import Product from '@/pages/Home/components/Product'
-import categories from './home/components/category/data.json'
+import categories from '@/pages/Home/components/category/data.json'
 
 const items: CardProps[] = [
   {
