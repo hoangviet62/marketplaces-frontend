@@ -8,11 +8,13 @@ export default function Table<T extends Record<string, unknown>>(props: Props<T>
   const [tableData, setTableData] = useState<T[]>([])
 
   useEffect(() => {
-    if (props.data) setTableData(props.data)
+    if (props.data) setTableData(props.data.data)
   }, [props.data])
 
   // eslint-disable-next-line
   const columns = useMemo<MRT_ColumnDef<T>[]>(() => props.fields as any, [])
+
+  console.log(props.data?.meta)
 
   return (
     <>
@@ -36,6 +38,8 @@ export default function Table<T extends Record<string, unknown>>(props: Props<T>
         editingMode="modal"
         enableEditing
         positionActionsColumn="last"
+        manualPagination
+        rowCount={props.data?.meta.total_items}
         renderRowActions={({ row }) => (
           <Box sx={{ display: 'flex' }}>
             <Tooltip arrow placement="left" title="Edit">

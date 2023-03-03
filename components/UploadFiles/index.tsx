@@ -58,8 +58,6 @@ const UploadFiles: React.FC<InputProps> = ({
     setuploadedFilesURL(cloneUploadedFilesURL)
   }
 
-  console.log(errors)
-
   return (
     <>
       <Button

@@ -14,9 +14,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import validators from '@/validators/category'
 import Input from '@/components/Input'
+import { useEffect } from 'react'
 
 const Categories = () => {
   const { data } = useCategories()
+
   const { mutate: mutateDelete } = useDeleteCategory()
   const { mutate: mutateCreate } = useCreateCategory()
   const { mutate: mutateUpdate } = useUpdateCategory()
@@ -26,7 +28,8 @@ const Categories = () => {
     handleSubmit,
     formState: { errors },
     control,
-    setValue
+    setValue,
+    setError
   } = useForm<CategoryPayload>({
     resolver: zodResolver(validators),
   })
@@ -107,17 +110,15 @@ const Categories = () => {
     </>
   }
 
-  console.log("errors", errors);
+  const metqua = (e) => Object.entries(e).forEach((k, v) => console.log(k, v))
 
   const formModal = (record?: any) => {
-    const id = record?.original?.id
+    const id = record?.id
     const formAction: string = id ? `Edit` : `Create`
 
-    if (id) {
-      setValue("name", record.original.name)
-    }
+    setValue("name", id ? record.name : "")
 
-    return <form onSubmit={handleSubmit(async (data) => onSubmit(id, data))}>
+    return <form onSubmit={handleSubmit(async (data) => { onSubmit(id, data) }, e => metqua(e))}>
       <Box sx={{ display: 'block', justifyContent: 'center' }}>
         <Typography sx={{ mb: 1 }} textAlign="center" variant="h6">{formAction}</Typography>
         <Input
@@ -154,7 +155,7 @@ const Categories = () => {
           </Button>
         </div>
       </Box>
-    </form>
+    </form >
   }
 
   const handleDelete = (record: any) => {

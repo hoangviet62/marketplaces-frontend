@@ -1,10 +1,11 @@
 import { NextPage } from 'next'
+import Container from '@/components/Container'
 
 const Admin: NextPage = () => {
   return (
-    <div>
+    <Container>
       <h1>Admin</h1>
-    </div>
+    </Container>
   )
 }
 

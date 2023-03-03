@@ -7,8 +7,8 @@ import { useEffect } from "react";
 
 const useCategories = () => {
     const { setLoading } = useLoading();
-    const result =  useQuery(['categories'], getAllCategoriesApi, {
-        select: (data) => data.data,
+    const result = useQuery(['categories'], getAllCategoriesApi, {
+        select: (data) => ({ data: data.data, meta: data.pagination }),
         onError: (err: any) => {
             toast(err.error, "error")
         },
