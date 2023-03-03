@@ -35,7 +35,7 @@ const Registration: NextPage = () => {
   })
 
   const router = useRouter()
-  const onSubmit = (data: any) => { }
+  const onSubmit = (data: any) => console.log(data)
   const handleNavigateRegister = () => router.push('/login')
 
   const renderRegistrationForm = () => (

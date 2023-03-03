@@ -52,7 +52,7 @@ const AdminProduct: NextPage = () => {
   }
 
   const mapCategoriesOptions = () => {
-    return categories.map((category: any) => {
+    return categories?.data.map((category: any) => {
       return {
         value: category.ID,
         label: category.name,

@@ -48,7 +48,7 @@ const AdminCreateProduct: NextPage = () => {
   }
 
   const mapCategoriesOptions = () => {
-    return data.map((category: any) => {
+    return data?.data?.map((category: any) => {
       return {
         value: category.ID,
         label: category.name,
