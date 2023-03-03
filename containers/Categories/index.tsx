@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Table from '@/components/Table'
-import { Category } from './types'
+import { CategoriesData, Category } from './types'
 import Image from 'next/image'
 import { convertUTCToLocalTime } from '@/utils/time'
 import useCategories from '@/hooks/Category/useCategories'
@@ -14,10 +14,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import validators from '@/validators/category'
 import Input from '@/components/Input'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const Categories = () => {
-  const { data } = useCategories()
+  const [payload, setPayload] = useState({page: 1, perPage: 10})
+  const { data } = useCategories(payload)
 
   const { mutate: mutateDelete } = useDeleteCategory()
   const { mutate: mutateCreate } = useCreateCategory()
@@ -76,7 +77,7 @@ const Categories = () => {
       },
     },
     {
-      accessorKey: 'created_at',
+      accessorKey: 'createdAt',
       header: 'Created At',
       Cell: ({ cell }: { cell: any }) => {
         const createdAt = cell.getValue()
@@ -174,14 +175,19 @@ const Categories = () => {
     showModal()
   }
 
+  const handlePagination = (meta: any) => {
+    setPayload(meta)
+  }
+
   return <>
     <Table<Category>
       actionButton={actionButton}
       fields={fields}
-      data={data}
+      data={data as CategoriesData}
       handleDelete={handleDelete}
       handleCreate={handleCreate}
       handleUpdate={handleUpdate}
+      handlePagination={handlePagination}
     />
   </>
 }

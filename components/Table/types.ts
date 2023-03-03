@@ -13,11 +13,26 @@ export type FieldData = {
   muiTableBodyCellEditTextFieldProps?: () => void;
 }
 
+export type MetaData ={
+  nextPage: number;
+  previousPage: number;
+  currentPage: number;
+  totalPages: number;
+  offset: number;
+  totalItems: number;
+  sort: string;
+  perPage: number;
+}
+
 export type Props<T> = {
   actionButton: ActionButton;
   fields: FieldData[];
-  data: T[];
+  data: {
+    data: T[];
+    meta: MetaData;
+  };
   handleDelete: (row: T) => void;
   handleCreate: () => void;
   handleUpdate: (params: T) => void;
+  handlePagination: (meta: {page: number, perPage: number}) => void;
 }

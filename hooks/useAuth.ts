@@ -8,10 +8,10 @@ import { storage } from '@/utils/cookie'
 
 export function handleUserResponse(resp: any) {
   const {
-    data: { auth_token }
+    data: { authToken }
   } = resp
-  storage.setToken(auth_token)
-  return auth_token
+  storage.setToken(authToken)
+  return authToken
 }
 
 async function userFn() {

@@ -5,9 +5,9 @@ import { toast } from "@/utils/toast";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 
-const useCategories = () => {
+const useCategories = (payload?: any) => {
     const { setLoading } = useLoading();
-    const result = useQuery(['categories'], getAllCategoriesApi, {
+    const result = useQuery(['categories', payload], () => getAllCategoriesApi(payload), {
         select: (data) => ({ data: data.data, meta: data.pagination }),
         onError: (err: any) => {
             toast(err.error, "error")

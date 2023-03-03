@@ -4,8 +4,16 @@ import { Box, Button, IconButton, Tooltip } from '@mui/material'
 import { Delete, Edit } from '@mui/icons-material'
 import { Props } from './types'
 
+const DEFAULT_META = {
+  totalItems: 0,
+  currentPage: 0,
+  perPage: 10
+}
+
 export default function Table<T extends Record<string, unknown>>(props: Props<T>) {
   const [tableData, setTableData] = useState<T[]>([])
+  const metaData = props?.data?.meta || DEFAULT_META
+  const {totalItems} = metaData
 
   useEffect(() => {
     if (props.data) setTableData(props.data.data)
@@ -14,7 +22,21 @@ export default function Table<T extends Record<string, unknown>>(props: Props<T>
   // eslint-disable-next-line
   const columns = useMemo<MRT_ColumnDef<T>[]>(() => props.fields as any, [])
 
-  console.log(props.data?.meta)
+  const [pagination, setPagination] = useState({
+    pageIndex: metaData.currentPage,
+    pageSize: metaData.perPage,
+  });
+
+  useEffect(() => {
+    const customPagination = {...pagination}
+    if (!props.data) customPagination.pageIndex = 0
+    setPagination(customPagination)
+
+    props.handlePagination({
+      page: pagination.pageIndex + 1,
+      perPage: pagination.pageSize
+    })
+  }, [pagination.pageIndex, pagination.pageSize, props.data]);
 
   return (
     <>
@@ -39,7 +61,9 @@ export default function Table<T extends Record<string, unknown>>(props: Props<T>
         enableEditing
         positionActionsColumn="last"
         manualPagination
-        rowCount={props.data?.meta.total_items}
+        rowCount={totalItems}
+        onPaginationChange={setPagination}
+        state={{ pagination }}
         renderRowActions={({ row }) => (
           <Box sx={{ display: 'flex' }}>
             <Tooltip arrow placement="left" title="Edit">

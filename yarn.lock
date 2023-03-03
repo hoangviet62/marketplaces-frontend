@@ -581,6 +581,11 @@
   resolved "https://registry.yarnpkg.com/@tanstack/virtual-core/-/virtual-core-3.0.0-beta.47.tgz#e7063a3f7647a36e28b591e80646b6173588fbcc"
   integrity sha512-/sh1pycClyW5BBpMAItKxP9qD7w0KSL7k/tHLsOFulMOrGTGhWRUiZE7VDEN0nHk5DNMx5TsPfaXC1jy6DxnVA==
 
+"@types/humps@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@types/humps/-/humps-2.0.2.tgz#6643e2beb13e0e7a22c65b2128b4315a727ecbe0"
+  integrity sha512-FuyQoVNSW6mjSLxLVRq8YK1pi8P5zyL2pahEuCtMqlbmV4jyWYITz4eE2fZIErNovIfKU32tPbCl44VbOUaEiw==
+
 "@types/js-cookie@^3.0.2":
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/@types/js-cookie/-/js-cookie-3.0.2.tgz#451eaeece64c6bdac8b2dde0caab23b085899e0d"
@@ -1765,6 +1770,11 @@ hoist-non-react-statics@^3.3.1:
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
   dependencies:
     react-is "^16.7.0"
+
+humps@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/humps/-/humps-2.0.1.tgz#dd02ea6081bd0568dc5d073184463957ba9ef9aa"
+  integrity sha512-E0eIbrFWUhwfXJmsbdjRQFQPrl5pTEoKlz163j1mTqqUnU9PgR4AgB8AIITzuB3vLBdxZXyZ9TDIrwB2OASz4g==
 
 husky@^8.0.3:
   version "8.0.3"

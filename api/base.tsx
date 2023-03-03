@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { storage } from '@/utils/cookie'
+import { camelizeKeys } from 'humps';
 
 const axiosClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_APP_API_URL,
   headers: {
-    // 'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
   },
 })
@@ -12,8 +12,8 @@ const axiosClient = axios.create({
 axiosClient.interceptors.request.use(
   (config) => {
     const token = storage.getToken()
-    if (token !== 'undefined')
-      config.headers['Authorization'] = `Bearer ${token}`
+    if (token !== 'undefined') config.headers['Authorization'] = `Bearer ${token}`
+
     return config
   },
   (error) => {
@@ -23,16 +23,13 @@ axiosClient.interceptors.request.use(
 
 axiosClient.interceptors.response.use(
   function (response) {
+    if (response.headers['content-type'].indexOf('application/json') > -1) {
+      response.data = camelizeKeys(response.data);
+    }
     return response?.data
   },
   function (error) {
     return Promise.reject(error?.response?.data)
-    // let res = error.response
-    //   if (res.status == 401) {
-    //     window.location.href = “https://example.com/login”;
-    //   }
-    //   console.error(“Looks like there was a problem. Status Code: “ + res.status);
-    // return Promise.reject(error)
   }
 )
 
