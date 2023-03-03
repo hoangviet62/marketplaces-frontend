@@ -23,7 +23,6 @@ const Input: React.FC<InputProps> = ({
     />
   )
 
-  console.log("errors1", errors);
   const renderFileField = () => (
     <UploadFiles
       errors={errors}

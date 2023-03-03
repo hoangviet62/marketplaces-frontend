@@ -1,20 +1,17 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useMemo, useState, useEffect } from 'react'
 import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table'
 import { Box, Button, IconButton, Tooltip } from '@mui/material'
 import { Delete, Edit } from '@mui/icons-material'
 import { Props } from './types'
 
-export default function Table<T extends Record<string, any>>(props: Props<T>) {
+export default function Table<T extends Record<string, unknown>>(props: Props<T>) {
   const [tableData, setTableData] = useState<T[]>([])
-  // const [validationErrors, setValidationErrors] = useState<{
-  //   [cellId: string]: string
-  // }>({})
 
   useEffect(() => {
     if (props.data) setTableData(props.data)
   }, [props.data])
 
+  // eslint-disable-next-line
   const columns = useMemo<MRT_ColumnDef<T>[]>(() => props.fields as any, [])
 
   return (

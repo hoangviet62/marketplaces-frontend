@@ -17,11 +17,16 @@ const MainMenu = styled(Box)(({ theme }) => ({
 
 const MenuBar = () => {
   return (
-    <MainMenu>
-      {customers.map((menu, index) => (
-        <MenuItem key={index} name={menu.name} subItems={menu.subItems} />
-      ))}
-    </MainMenu>
+    <div>
+      <MainMenu>
+        {customers.map((menu, index) => (
+          <MenuItem key={index} name={menu.name} subItems={menu.subItems} />
+        ))}
+        <div style={{ marginLeft: 'auto' }}>
+          <MenuItem key={'SignIn'} name="Sign In or Register" path="/login" />
+        </div>
+      </MainMenu>
+    </div>
   )
 }
 

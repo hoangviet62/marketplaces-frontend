@@ -10,6 +10,7 @@ import {
   styled,
 } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
+import Image from 'next/image'
 
 const ImageListItemBarCustom = styled(ImageListItemBar)(({ theme }) => ({
   color: theme.palette.primary.dark,
@@ -44,14 +45,8 @@ const Category: React.FC<CategoryProps> = ({ data }) => {
         {data &&
           data.map((item, index) => (
             <ImageListItem key={index}>
-              <img
-                height="100%"
-                width="100%"
-                src={`${item.images[0]}?w=248&fit=crop&auto=format`}
-                srcSet={`${item.images[0]}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                alt={item.name}
-                loading="lazy"
-              />
+              <Image src={`${item.images[0]}?w=248&fit=crop&auto=format`}
+                alt="Image for category" height={144} width={208} />
               <ImageListItemBarCustom
                 title={
                   <Typography

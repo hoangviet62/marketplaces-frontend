@@ -37,7 +37,7 @@ const AdminProduct: NextPage = () => {
     setValue('description', data.description)
     setValue('tag', data.tag)
     setValue('category_id', data.category_id)
-  }, [data])
+  }, [data, setValue])
 
   const onSubmit = (data: ProductPayload) => {
     const categoryId = data.category_id.toString()

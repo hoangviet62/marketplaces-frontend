@@ -12,6 +12,7 @@ import {
 import { useState } from 'react'
 import { useController } from 'react-hook-form'
 import CloseIcon from '@mui/icons-material/Close'
+import Image from 'next/image'
 
 const UploadFiles: React.FC<InputProps> = ({
   errors,
@@ -89,13 +90,8 @@ const UploadFiles: React.FC<InputProps> = ({
           {uploadedFilesURL.map((item, index) => (
             // <Card key={index}>
             <ImageListItem key={index}>
-              <img
-                width="100%"
-                height="100%"
-                src={item}
-                alt="aaa"
-                loading="lazy"
-              />
+              <Image src={item}
+                alt="Image for category" height={144} width={208} />
               <ImageListItemBar
                 position="top"
                 sx={{ textAlign: 'center' }}

@@ -35,10 +35,6 @@ const Categories = () => {
     mutateDelete(id)
   }
 
-  // const handleCreateConfirm = (e: any, id: any) => {
-  //   mutateDelete(id)
-  // }
-
   const onSubmit = (id: number | undefined, data: CategoryPayload) => {
     const formData = new FormData()
     formData.append('name', data.name)

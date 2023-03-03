@@ -14,6 +14,7 @@ import { LoadingContext } from '@/context/loading'
 import { useState } from 'react'
 import Loading from '@/components/Loading'
 import ModalProvider from '@/providers/modal'
+import '../public/css/global.css'
 
 const roboto = localFont({
   src: [

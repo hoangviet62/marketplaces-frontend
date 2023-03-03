@@ -7,6 +7,15 @@ import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state'
 import { styled } from '@mui/material'
 import { useRouter } from 'next/router'
 
+type Props = {
+  name: string;
+  path?: string;
+  subItems?: {
+    name: string;
+    path: string;
+  }[]
+}
+
 const MenuButton = styled(Button)(({ theme }) => ({
   color: theme.palette.common.white,
   minWidth: 200,
@@ -24,10 +33,8 @@ const MenuContainer = styled(Menu)(() => ({
   },
 }))
 
-const MenuPopupItems = (item: {
-  name: string
-  subItems: { name: string; path: string }[]
-}) => {
+const MenuPopupItems = (item: Props) => {
+  const { name, path, subItems = [] } = item
   const Router = useRouter()
 
   const handleClick = (popupState: any, path: string) => {
@@ -39,11 +46,11 @@ const MenuPopupItems = (item: {
     <PopupState variant="popover" popupId="demo-popup-menu">
       {(popupState: any) => (
         <React.Fragment>
-          <MenuButton variant="text" {...bindTrigger(popupState)}>
-            {item.name}
+          <MenuButton variant="text" {...path ? { onClick: () => Router.push(path) } : { ...bindTrigger(popupState) }}>
+            {name}
           </MenuButton>
           <MenuContainer {...bindMenu(popupState)} sx={{ borderRadius: 0 }}>
-            {item?.subItems.map((subItem, index) => (
+            {subItems.map((subItem, index) => (
               <MenuItem
                 key={index}
                 onClick={() => handleClick(popupState, subItem.path)}
