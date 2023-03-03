@@ -29,10 +29,13 @@ const Categories = () => {
     formState: { errors },
     control,
     setValue,
-    setError
   } = useForm<CategoryPayload>({
     resolver: zodResolver(validators),
   })
+
+  useEffect(() => {
+    setModalContent(formModal())
+  }, [errors])
 
   const handleDeleteConfirm = (e: any, id: any) => {
     mutateDelete(id)
@@ -110,15 +113,13 @@ const Categories = () => {
     </>
   }
 
-  const metqua = (e) => Object.entries(e).forEach((k, v) => console.log(k, v))
-
   const formModal = (record?: any) => {
     const id = record?.id
     const formAction: string = id ? `Edit` : `Create`
 
     setValue("name", id ? record.name : "")
 
-    return <form onSubmit={handleSubmit(async (data) => { onSubmit(id, data) }, e => metqua(e))}>
+    return <form onSubmit={handleSubmit(async (data) => { onSubmit(id, data) })}>
       <Box sx={{ display: 'block', justifyContent: 'center' }}>
         <Typography sx={{ mb: 1 }} textAlign="center" variant="h6">{formAction}</Typography>
         <Input
