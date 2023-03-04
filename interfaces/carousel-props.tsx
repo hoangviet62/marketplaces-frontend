@@ -6,4 +6,5 @@ export interface CarouselProps {
   CardComponent?: React.FC<any>
   itemsPerView?: number
   itemsPerViewWithMobileDevice?: number
+  handleClickCallback?: any
 }

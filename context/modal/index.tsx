@@ -13,7 +13,7 @@ const defaultShowModal = () => {
   return
 }
 
-const defaultSetModalContent = (content: React.ReactNode | string) => {
+const defaultSetModalContent = () => {
   return
 }
 

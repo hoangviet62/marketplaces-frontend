@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import CartMenu from '@/components/CartMenu'
 import UnauthorizedPage from '@/components/UnauthorizedPage'
 import { User } from '@/enums'
 import { useUser, AuthLoader } from '@/hooks/useAuth'
@@ -20,7 +21,12 @@ const ProtectedRoute = ({ children }: any) => {
     )
   }
 
-  return children
+  return (
+    <>
+      <CartMenu />
+      {children}
+    </>
+  )
 }
 
 export default ProtectedRoute
