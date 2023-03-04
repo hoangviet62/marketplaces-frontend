@@ -7,6 +7,8 @@ const ACCEPTED_IMAGE_TYPES = [
   'image/jpg',
   'image/png',
   'image/webp',
+  'image/svg',
+  'image/svg+xml',
 ]
 
 const schema = z.object({
@@ -20,7 +22,7 @@ const schema = z.object({
     .refine((files) => {
       if (files?.length === 0 || !files) return true
       return ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type)
-    }, '.jpg, .jpeg, .png and .webp files are accepted.'),
+    }, '.jpg, .jpeg, .png, .svg and .webp files are accepted.'),
   medias: z
     .custom<File[]>()
     .refine((files) => {

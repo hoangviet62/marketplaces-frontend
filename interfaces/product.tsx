@@ -14,6 +14,7 @@ export interface ProductPayload {
 export type Product = {
   id: number;
   name: string;
+  description: string;
   images: Image[];
   createdAt: string;
   updatedAt: string;

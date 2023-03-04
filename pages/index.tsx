@@ -7,7 +7,6 @@ import About from './Home/components/About'
 import Category from './Home/components/Category'
 import News from './Home/components/News'
 import Product from './Home/components/Product'
-import categories from './Home/components/Category/data.json'
 
 const items: CardProps[] = [
   {
@@ -63,20 +62,20 @@ const items: CardProps[] = [
 const Home: NextPage = () => {
   const [mockApiItems, setMockApiItems] = useState<CardProps[]>(items)
 
-  const callback = () => {
-    // call api here
-    let newArr = JSON.parse(JSON.stringify(items))
-    newArr = newArr.concat(mockApiItems)
-    setMockApiItems(newArr)
-  }
+  // const callback = () => {
+  //   // call api here
+  //   let newArr = JSON.parse(JSON.stringify(items))
+  //   newArr = newArr.concat(mockApiItems)
+  //   setMockApiItems(newArr)
+  // }
 
   return (
     <Box>
       <Banner />
       <Container maxWidth="xl">
         <Category />
-        <Product items={mockApiItems} callback={callback} />
-        <News data={categories.data.slice(0, 3)} />
+        <Product />
+        <News data={items.slice(0,3)} />
         <About />
       </Container>
     </Box>

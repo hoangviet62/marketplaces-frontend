@@ -21,7 +21,11 @@ const ImageListItemBarCustom = styled(ImageListItemBar)(({ theme }) => ({
 const Category = () => {
   const theme = useTheme()
   const {data: categories} = useCategories()
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+  const isMedium = useMediaQuery(theme.breakpoints.between('md', 'lg'))
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'))
+  let numberToScale = 2
+  if (isMedium) numberToScale = 4
+  if (isDesktop) numberToScale = 6
 
   return (
     <Box sx={{ my: 10 }}>
@@ -36,33 +40,35 @@ const Category = () => {
         Categories
       </Typography>
       {categories?.data && <ImageList
-        gap={20}
+        gap={8}
         sx={{ mb: 8 }}
-        cols={isMobile ? 2 : 5}
+        cols={numberToScale}
       >
         {categories.data.map((category: Category) => (
-            <ImageListItem key={category.id}>
-              <Image src={`${process.env.apiUrl}${category.images[0].url}`}
-                alt="Image for category"
-                width="0"
-                height="0"
-                sizes="100vw"
-                style={{ width: '100%', height: 148 }}
-                />
-              <ImageListItemBarCustom
-                title={
-                  <Typography
-                    sx={{ fontWeight: 'bold' }}
-                    variant="h6"
-                    color="primary"
-                  >
-                    {category.name}
-                  </Typography>
-                }
-                position="below"
+          <ImageListItem key={category.id} sx={{alignItems: 'center'}}>
+            <Image src={`${process.env.apiUrl}${category.images[0].url}`}
+              alt="Image for category"
+              width="0"
+              height="0"
+              sizes="100vw"
+              style={{ width: 210, height: 148 }}
               />
-            </ImageListItem>
-          ))}
+            <ImageListItemBarCustom
+              title={
+                <Typography
+                  sx={{ fontWeight: 'bold' }}
+                  variant="subtitle1"
+                  whiteSpace="normal"
+                  color="primary"
+                  component="div"
+                >
+                  {category.name}
+                </Typography>
+              }
+              position="below"
+            />
+          </ImageListItem>
+        ))}
       </ImageList>}
     </Box>
   )

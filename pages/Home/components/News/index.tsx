@@ -13,11 +13,10 @@ import Image from 'next/image'
 
 const News: React.FC<CategoryProps> = ({ data }) => {
   const theme = useTheme()
-
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
-    <Box sx={{ my: 10 }}>
+    <Box sx={{ my: 10, textAlign: 'center' }}>
       <Typography
         gutterBottom
         variant="h5"
@@ -32,15 +31,15 @@ const News: React.FC<CategoryProps> = ({ data }) => {
         gap={20}
         sx={{
           mb: 8,
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280fr, 1fr)!important',
+          display: 'inline-flex'
         }}
-        cols={isMobile ? 1 : 3}
+        cols={isMobile ? 1 : 5}
       >
         {data &&
           data.map((item, index) => (
             <ImageListItem key={index}>
-              <Image src={`${item.images[0]}?w=248&fit=crop&auto=format`}
-                alt="Image for category" height={144} width={208} />
+              <Image src={`${item.image}?w=400&fit=crop&auto=format`}
+                alt="Image for category" height={300} width={400} />
               <ImageListItemBar
                 title={
                   <Typography
@@ -48,7 +47,7 @@ const News: React.FC<CategoryProps> = ({ data }) => {
                     variant="h6"
                     color="primary"
                   >
-                    {item.name}
+                    {item.title}
                   </Typography>
                 }
                 position="below"

@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { Box, styled, Typography } from '@mui/material'
-import { CarouselProps } from '@/interfaces/carousel-props'
 import MediaCard from '@/components/Card'
 import Carousel from '@/components/Carousel'
+import useProducts from '@/hooks/Product/useProducts'
+import {Product} from '@/interfaces/product'
 
 const CustomWrapper = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.common.white,
@@ -10,7 +11,14 @@ const CustomWrapper = styled(Box)(({ theme }) => ({
   clipPath: 'inset(0 -100vmax)',
 }))
 
-const Product: React.FC<CarouselProps> = ({ items, callback }) => {
+const Product = () => {
+  const {data: products} = useProducts()
+  const items = products?.data.map((item: Product) => ({
+    image: `${process.env.apiUrl}${item.images[0].url}`,
+    title: item.name,
+    content: item.description
+  }))
+
   return (
     <CustomWrapper>
       <Typography
@@ -26,8 +34,8 @@ const Product: React.FC<CarouselProps> = ({ items, callback }) => {
       <Carousel
         items={items}
         CardComponent={MediaCard}
-        callback={callback}
-        itemsPerView={3}
+        // callback={callback}
+        itemsPerView={5}
       />
     </CustomWrapper>
   )

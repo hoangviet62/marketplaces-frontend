@@ -44,7 +44,6 @@ const Banners = () => {
   const onSubmit = (id: number | undefined, data: BannerPayload) => {
     const formData = new FormData()
     formData.append('description', data.description)
-    console.log(data)
     formData.append('link_to', data.linkTo)
 
     if (data.images) {

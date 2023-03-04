@@ -5,6 +5,7 @@ import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import { CardProps } from '@/interfaces/card-props'
 import { styled } from '@mui/material/styles'
+import { CardHeader, useMediaQuery, useTheme } from '@mui/material'
 
 const StyledBackgroundCard = styled(Card)(({}) => ({
   marginLeft: '-51px',
@@ -20,14 +21,28 @@ const MediaCard: React.FC<CardProps> = ({
   title,
   content,
 }) => {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
   const renderSimpleCard = () => (
-    <Card>
-      <CardMedia sx={{ height: 140 }} image={image} title="green iguana" />
+    <Card elevation={2} raised
+      sx={{
+        maxWidth: 320,
+        margin: "0 auto",
+        padding: "0.1em",
+      }}
+    >
+      <CardHeader>&nbsp;</CardHeader>
+      <CardMedia
+        image={image}
+        component="img"
+        height={200}
+        sx={{ padding: "1em 1em 0 1em", objectFit: "contain" }}
+      />
       <CardContent>
-        <Typography gutterBottom variant="subtitle1" component="div">
+        <Typography gutterBottom variant="h6" align="center" component="div" sx={{fontWeight: 'bold'}}>
           {title}
         </Typography>
-        <Typography variant="caption">
+        <Typography variant="subtitle1" align="center" noWrap>
           {content}
         </Typography>
       </CardContent>
@@ -35,12 +50,19 @@ const MediaCard: React.FC<CardProps> = ({
   )
 
   const renderBackgroundCard = () => (
-    <StyledBackgroundCard sx={{ backgroundImage: `url("${image}")`, borderRadius: 0 }}>
+    <StyledBackgroundCard sx={{
+      backgroundImage: `url("${image}")`,
+      borderRadius: 0,
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      height: isMobile ? 'auto' : 560
+    }}>
       <div style={{
         height: '100%',
         position: 'absolute',
         width: '100%',
-        top: '33%',
+        top: isMobile ? '40%' : 230,
         left: '1%'
       }}>
         <CardContent>
