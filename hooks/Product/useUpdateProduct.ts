@@ -2,21 +2,21 @@ import { updateProductApi } from "@/api/products";
 import { useLoading } from "@/context/loading";
 import { toast } from "@/utils/toast";
 import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/router";
+import useProducts from "./useProducts";
 
 const useUpdateProduct = () => {
-  const router = useRouter();
+  const { refetch } = useProducts()
   const { setLoading } = useLoading()
   return useMutation(updateProductApi, {
     onMutate: () => {
       setLoading(true)
     },
     onSuccess: () => {
-      router.push("/admin/products")
-      toast("Update Product successfully", `success`)
+      toast("Update product successfully", `success`)
+      refetch()
     },
     onError: () => {
-      toast("Failed to update Product", `error`)
+      toast("Failed to update product", `error`)
     },
     onSettled: () => {
       setLoading(false)

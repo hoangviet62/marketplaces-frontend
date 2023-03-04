@@ -1,20 +1,26 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export interface ProductInterface {
-  id?: number
-  name?: string
-  images?: string[]
-}
-
-export interface ProductProps {
-  // should be ProductInterface[]
-  data: any[]
-}
+import { MetaData } from "@/components/Table/types";
+import { Image } from './image'
 
 export interface ProductPayload {
   name: string
   description: string
   tag: string
-  category_id: number
+  category_id: number | string
   images?: File[]
   medias?: File[]
 }
+
+
+export type Product = {
+  id: number;
+  name: string;
+  images: Image[];
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string;
+};
+
+export type ProductsData = {
+  data: Product[];
+  meta: MetaData;
+};

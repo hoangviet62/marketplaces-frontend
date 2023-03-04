@@ -6,19 +6,19 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 
 const useCategories = (payload?: any) => {
-    const { setLoading } = useLoading();
-    const result = useQuery(['categories', payload], () => getAllCategoriesApi(payload), {
-        select: (data) => ({ data: data.data, meta: data.pagination }),
-        onError: (err: any) => {
-            toast(err.error, "error")
-        },
-    })
+  const { setLoading } = useLoading();
+  const result = useQuery(['categories'], () => getAllCategoriesApi(payload), {
+    select: (data) => ({ data: data.data, meta: data.pagination }),
+    onError: (err: any) => {
+        toast(err.error, "error")
+    },
+  })
 
-    useEffect(() => {
-        setLoading(result.isFetching)
-    }, [result.isFetching])
+  useEffect(() => {
+    setLoading(result.isFetching)
+  }, [result.isFetching])
 
-    return result;
+  return result;
 };
 
 export default useCategories

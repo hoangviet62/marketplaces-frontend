@@ -1,27 +1,30 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Table from '@/components/Table'
+import { ProductsData, Product, ProductPayload } from '@/interfaces/product'
 import Image from 'next/image'
 import { convertUTCToLocalTime } from '@/utils/time'
-import useCategories from '@/hooks/Category/useCategories'
-import useDeleteCategory from '@/hooks/Category/useDeleteCategory'
-import useCreateCategory from '@/hooks/Category/useCreateCategory'
-import useUpdateCategory from '@/hooks/Category/useUpdateCategory'
+import useProducts from '@/hooks/Product/useProducts'
+import useDeleteProduct from '@/hooks/Product/useDeleteProduct'
+import useCreateProduct from '@/hooks/Product/useCreateProduct'
+import useUpdateProduct from '@/hooks/Product/useUpdateProduct'
 import { Typography, Box, Button } from '@mui/material'
 import { useModal } from '@/context/modal'
-import { CategoriesData, Category, CategoryPayload } from '@/interfaces/category'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import validators from '@/validators/category'
+import validators from '@/validators/product'
 import Input from '@/components/Input'
 import { useEffect, useState } from 'react'
+import Select from '@/components/Select'
+import useCategories from '@/hooks/Category/useCategories'
 
-const Categories = () => {
+const Products = () => {
   const [payload, setPayload] = useState({page: 1, perPage: 10})
-  const { data } = useCategories(payload)
+  const { data } = useProducts(payload)
+  const { data: categoriesData } = useCategories()
 
-  const { mutate: mutateDelete } = useDeleteCategory()
-  const { mutate: mutateCreate } = useCreateCategory()
-  const { mutate: mutateUpdate } = useUpdateCategory()
+  const { mutate: mutateDelete } = useDeleteProduct()
+  const { mutate: mutateCreate } = useCreateProduct()
+  const { mutate: mutateUpdate } = useUpdateProduct()
   const { setModalContent, showModal, hideModal } = useModal()
   const {
     register,
@@ -29,7 +32,7 @@ const Categories = () => {
     formState: { errors },
     control,
     setValue,
-  } = useForm<CategoryPayload>({
+  } = useForm<ProductPayload>({
     resolver: zodResolver(validators),
   })
 
@@ -41,14 +44,26 @@ const Categories = () => {
     mutateDelete(id)
   }
 
-  const onSubmit = (id: number | undefined, data: CategoryPayload) => {
+  const onSubmit = (id: number | undefined, data: ProductPayload) => {
+    const categoryId = data.category_id.toString()
     const formData = new FormData()
     formData.append('name', data.name)
+    formData.append('description', data.description)
+    formData.append('category_id', categoryId)
+    formData.append('tag', data.tag)
+
     if (data.images) {
       for (const file of data?.images) {
         formData.append('images', file)
       }
     }
+
+    if (data.medias) {
+      for (const file of data?.medias) {
+        formData.append('medias', file)
+      }
+    }
+
     id ? mutateUpdate({ data: formData, id }) : mutateCreate(formData)
     hideModal()
   }
@@ -70,7 +85,7 @@ const Categories = () => {
         const record = cell.getValue()
         const imageUrl = record?.length > 0 && record[0]?.url && `${process.env.apiUrl}${record[0].url}`
         return record?.length > 0 ? <Image src={imageUrl}
-          alt="Image for category"
+          alt="Image for Product"
           width={64}
           height={64} /> : "-"
       },
@@ -85,7 +100,7 @@ const Categories = () => {
     }
   ]
 
-  const deleteModal = (record: Category) => {
+  const deleteModal = (record: Product) => {
     const { id, name } = record
 
     return <>
@@ -113,31 +128,74 @@ const Categories = () => {
     </>
   }
 
+  const mapCategoriesOptions = () => {
+    return categoriesData?.data?.map((category: any) => {
+      return {
+        value: category.id,
+        label: category.name,
+      }
+    })
+  }
+
   const formModal = (record?: any) => {
+    const options = mapCategoriesOptions()
     const id = record?.id
     const formAction: string = id ? `Edit` : `Create`
 
     setValue("name", id ? record.name : "")
+    setValue("category_id", id ? record.categoryId : "")
+    setValue("description", id ? record.description : "")
+    setValue("tag", id ? record.tag : "")
 
-    return <form onSubmit={handleSubmit(async (data) => { onSubmit(id, data) })}>
+    return <form onSubmit={handleSubmit(async (data) => { onSubmit(id, data) }, e => console.log(e))}>
       <Box sx={{ display: 'block', justifyContent: 'center' }}>
         <Typography sx={{ mb: 1 }} textAlign="center" variant="h6">{formAction}</Typography>
+        <Select
+          fieldName="category_id"
+          labelName="Category"
+          errors={errors}
+          register={register}
+          options={options}
+        />
         <Input
-          key={`name_${record?.id}`}
           fieldName="name"
           labelName="Name"
           errors={errors}
           register={register}
           type="text"
         />
-        {!id && <Input
+        <Input
+          fieldName="description"
+          labelName="Description"
+          errors={errors}
+          register={register}
+          type="text"
+        />
+        <Input
+          fieldName="tag"
+          labelName="Tag"
+          errors={errors}
+          register={register}
+          type="text"
+        />
+        <Input
           fieldName="images"
-          labelName="Upload Image"
+          labelName="Upload Images"
           errors={errors}
           register={register}
           type="file"
+          multiple={true}
           control={control}
-        />}
+        />
+        <Input
+          fieldName="medias"
+          labelName="Upload Medias"
+          errors={errors}
+          register={register}
+          type="file"
+          multiple={true}
+          control={control}
+        />
         <div style={{ textAlign: 'right' }}>
           <Button
             variant="outlined"
@@ -169,7 +227,7 @@ const Categories = () => {
     showModal()
   }
 
-  const handleUpdate = (record: Category) => {
+  const handleUpdate = (record: Product) => {
     setModalContent(formModal(record))
     showModal()
   }
@@ -179,10 +237,10 @@ const Categories = () => {
   }
 
   return <>
-    <Table<Category>
+    <Table<Product>
       actionButton={actionButton}
       fields={fields}
-      data={data as CategoriesData}
+      data={data as ProductsData}
       handleDelete={handleDelete}
       handleCreate={handleCreate}
       handleUpdate={handleUpdate}
@@ -191,4 +249,4 @@ const Categories = () => {
   </>
 }
 
-export default Categories;
+export default Products;

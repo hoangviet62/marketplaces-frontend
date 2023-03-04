@@ -16,11 +16,11 @@ const useDeleteProduct = () => {
       setLoading(true)
     },
     onSuccess: () => {
-      toast("Delete Product successfully", `success`)
+      toast("Delete product successfully", `success`)
       refetch()
     },
     onError: () => {
-      toast("Failed to delete Product", `error`)
+      toast("Failed to delete product", `error`)
     },
     onSettled: () => {
       hideModal()

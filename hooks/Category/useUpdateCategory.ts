@@ -13,11 +13,11 @@ const useUpdateCategory = () => {
       setLoading(true)
     },
     onSuccess: () => {
-      toast("Update Category successfully", `success`)
+      toast("Update category successfully", `success`)
       refetch()
     },
     onError: () => {
-      toast("Failed to update Category", `error`)
+      toast("Failed to update category", `error`)
     },
     onSettled: () => {
       setLoading(false)

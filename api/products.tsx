@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import QueryStringParams from '@/utils/query-string-params'
 import axiosClient from './base'
 
 const endpoint = 'products'
@@ -16,8 +16,8 @@ export async function deleteProductApi(id: string): Promise<any> {
   return axiosClient.delete(`${process.env.apiUrl}/${endpoint}/${id}`)
 }
 
-export async function getAllProductsApi(): Promise<any> {
-  return axiosClient.get(`${process.env.apiUrl}/${endpoint}?sort=desc`)
+export async function getAllProductsApi(payload: any): Promise<any> {
+  return axiosClient.get(`${process.env.apiUrl}/${QueryStringParams(payload, endpoint)}`)
 }
 
 export async function getProductById(id: number): Promise<any> {

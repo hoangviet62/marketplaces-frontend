@@ -1,91 +1,14 @@
 import Container from '@/components/Container'
-import { useModal } from '@/context/modal'
-import useProducts from '@/hooks/Product/useProducts'
-import useDeleteProduct from '@/hooks/Product/useDeleteProduct'
-import { Box, Button, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import { NextPage } from 'next'
-import { useRouter } from 'next/router'
+import ProductsContainer from '@/containers/Products'
 
 const AdminProducts: NextPage = () => {
-  const { data } = useProducts()
-  const { setModalContent, showModal, hideModal } = useModal()
-  const { mutate } = useDeleteProduct()
-  const router = useRouter()
-  const handleClick = () => router.push('/admin/products/create')
-  const handleUpdate = (
-    _: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    id: string
-  ) => router.push(`/admin/products/${id}`)
-  const handleDeleteConfirm = (
-    _: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    id: string
-  ) => {
-    mutate(id)
-  }
-
-  const renderSimpleModal = (id: string) => (
-    <>
-      <Typography component="p" align="center">
-        Do you want to delete this product?
-      </Typography>
-      <Box sx={{ display: 'flex', mt: 3, justifyContent: 'space-between' }}>
-        <Button
-          variant="contained"
-          onClick={(e) => handleDeleteConfirm(e, id)}
-          sx={{ mr: 3 }}
-          color="error"
-        >
-          <Typography component="p">Delete</Typography>
-        </Button>
-        <Button
-          variant="contained"
-          onClick={hideModal}
-          sx={{ backgroundColor: (theme) => theme.palette.common.black }}
-        >
-          <Typography component="p">Cancel</Typography>
-        </Button>
-      </Box>
-    </>
-  )
-
-  const handleDelete = (
-    _: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    id: string
-  ) => {
-    setModalContent(renderSimpleModal(id))
-    showModal()
-  }
-
   return (
     <Container>
-      <h1>AdminProducts</h1>
-      <Button variant="contained" onClick={handleClick}>
-        <Typography component="p">Add</Typography>
-      </Button>
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Typography component="p" sx={{ mt: 3, mr: 3 }}>
-          Latest Product: {data && data[0]?.name}
-        </Typography>
-        {data && (
-          <>
-            <Button
-              variant="contained"
-              onClick={(e) => handleUpdate(e, data[0]?.id)}
-              sx={{ mr: 3 }}
-            >
-              <Typography component="p">Update</Typography>
-            </Button>
-            <Button
-              variant="contained"
-              onClick={(e) => handleDelete(e, data[0]?.id)}
-              color="error"
-            >
-              <Typography component="p">Delete</Typography>
-            </Button>
-          </>
-        )}
-      </Box>
-    </Container>
+      <Typography variant="h5" gutterBottom>Products</Typography>
+      <ProductsContainer />
+    </Container >
   )
 }
 

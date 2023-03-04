@@ -16,7 +16,7 @@ export default function Table<T extends Record<string, unknown>>(props: Props<T>
   const {totalItems} = metaData
 
   useEffect(() => {
-    if (props.data) setTableData(props.data.data)
+    if (props.data?.data) setTableData(props.data.data)
   }, [props.data])
 
   // eslint-disable-next-line

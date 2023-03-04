@@ -13,11 +13,11 @@ const useCreateCategory = () => {
       setLoading(true)
     },
     onSuccess: () => {
-      toast("Added Category successfully", `success`)
+      toast("Added category successfully", `success`)
       refetch()
     },
     onError: () => {
-      toast("Failed to add Category", `error`)
+      toast("Failed to add category", `error`)
     },
     onSettled: () => {
       setLoading(false)

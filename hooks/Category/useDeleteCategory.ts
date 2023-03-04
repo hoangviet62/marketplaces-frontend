@@ -15,11 +15,11 @@ const useDeleteCategory = () => {
       setLoading(true)
     },
     onSuccess: () => {
-      toast("Delete Category successfully", `success`)
+      toast("Delete category successfully", `success`)
       refetch()
     },
     onError: () => {
-      toast("Failed to delete Category", `error`)
+      toast("Failed to delete category", `error`)
     },
     onSettled: () => {
       hideModal()
