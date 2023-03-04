@@ -1,148 +1,20 @@
 [
   {
-    "name": "Category",
-    "path": "/",
-    "subItems": [
-      {
-        "name": "Antennas",
-        "path": "/",
-        "subItems": [
-          {
-            "name": "View All",
-            "path": "/",
-            "subItems": []
-          },
-          {
-            "name": "In-Building Antennas",
-            "path": "/",
-            "subItems": []
-          }
-        ]
-      },
-      {
-        "name": "Broadband Radios, Accessories & Services",
-        "path": "/",
-        "subItems": []
-      },
-      {
-        "name": "Cable Products",
-        "path": "/",
-        "subItems": []
-      },
-      {
-        "name": "Infrastructure Hardwares",
-        "path": "/",
-        "subItems": []
-      }
-    ]
+    "name": "Dashboard",
+    "path": "#",
+    "subItems": []
   },
   {
-    "name": "Products",
-    "path": "/",
+    "name": "Management",
     "subItems": [
       {
-        "name": "Antennas",
-        "path": "/",
-        "subItems": [
-          {
-            "name": "View All",
-            "path": "/",
-            "subItems": []
-          },
-          {
-            "name": "In-Building Antennas",
-            "path": "/",
-            "subItems": []
-          }
-        ]
-      },
-      {
-        "name": "Broadband Radios, Accessories & Services",
-        "path": "/",
+        "name": "Categories",
+        "path": "/admin/categories",
         "subItems": []
       },
       {
-        "name": "Cable Products",
-        "path": "/",
-        "subItems": []
-      },
-      {
-        "name": "Infrastructure Hardwares",
-        "path": "/",
-        "subItems": []
-      }
-    ]
-  },
-  {
-    "name": "Suppliers",
-    "path": "/",
-    "subItems": [
-      {
-        "name": "Antennas",
-        "path": "/",
-        "subItems": [
-          {
-            "name": "View All",
-            "path": "/",
-            "subItems": []
-          },
-          {
-            "name": "In-Building Antennas",
-            "path": "/",
-            "subItems": []
-          }
-        ]
-      },
-      {
-        "name": "Broadband Radios, Accessories & Services",
-        "path": "/",
-        "subItems": []
-      },
-      {
-        "name": "Cable Products",
-        "path": "/",
-        "subItems": []
-      },
-      {
-        "name": "Infrastructure Hardwares",
-        "path": "/",
-        "subItems": []
-      }
-    ]
-  },
-  {
-    "name": "Services",
-    "path": "/",
-    "subItems": [
-      {
-        "name": "Antennas",
-        "path": "/",
-        "subItems": [
-          {
-            "name": "View All",
-            "path": "/",
-            "subItems": []
-          },
-          {
-            "name": "In-Building Antennas",
-            "path": "/",
-            "subItems": []
-          }
-        ]
-      },
-      {
-        "name": "Broadband Radios, Accessories & Services",
-        "path": "/",
-        "subItems": []
-      },
-      {
-        "name": "Cable Products",
-        "path": "/",
-        "subItems": []
-      },
-      {
-        "name": "Infrastructure Hardwares",
-        "path": "/",
+        "name": "Products",
+        "path": "/admin/products",
         "subItems": []
       }
     ]

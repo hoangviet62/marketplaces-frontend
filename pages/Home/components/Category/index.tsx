@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { CategoryProps } from '@/interfaces/category'
+import { Category } from '@/interfaces/category'
 import {
   Box,
   ImageList,
@@ -11,15 +11,16 @@ import {
 } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import Image from 'next/image'
+import useCategories from '@/hooks/Category/useCategories'
 
 const ImageListItemBarCustom = styled(ImageListItemBar)(({ theme }) => ({
   color: theme.palette.primary.dark,
   textAlign: 'center',
 }))
 
-const Category: React.FC<CategoryProps> = ({ data }) => {
+const Category = () => {
   const theme = useTheme()
-
+  const {data: categories} = useCategories()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
@@ -34,19 +35,20 @@ const Category: React.FC<CategoryProps> = ({ data }) => {
       >
         Categories
       </Typography>
-      <ImageList
+      {categories?.data && <ImageList
         gap={20}
-        sx={{
-          mb: 8,
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280fr, 1fr)!important',
-        }}
+        sx={{ mb: 8 }}
         cols={isMobile ? 2 : 5}
       >
-        {data &&
-          data.map((item, index) => (
-            <ImageListItem key={index}>
-              <Image src={`${item.images[0]}?w=248&fit=crop&auto=format`}
-                alt="Image for category" height={144} width={208} />
+        {categories.data.map((category: Category) => (
+            <ImageListItem key={category.id}>
+              <Image src={`${process.env.apiUrl}${category.images[0].url}`}
+                alt="Image for category"
+                width="0"
+                height="0"
+                sizes="100vw"
+                style={{ width: '100%', height: 148 }}
+                />
               <ImageListItemBarCustom
                 title={
                   <Typography
@@ -54,14 +56,14 @@ const Category: React.FC<CategoryProps> = ({ data }) => {
                     variant="h6"
                     color="primary"
                   >
-                    {item.name}
+                    {category.name}
                   </Typography>
                 }
                 position="below"
               />
             </ImageListItem>
           ))}
-      </ImageList>
+      </ImageList>}
     </Box>
   )
 }

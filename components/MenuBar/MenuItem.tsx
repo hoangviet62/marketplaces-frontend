@@ -30,6 +30,7 @@ const MenuButton = styled(Button)(({ theme }) => ({
 const MenuContainer = styled(Menu)(() => ({
   '& .MuiPaper-root': {
     borderRadius: 0,
+    minWidth: 300
   },
 }))
 
@@ -54,6 +55,7 @@ const MenuPopupItems = (item: Props) => {
               <MenuItem
                 key={index}
                 onClick={() => handleClick(popupState, subItem.path)}
+                sx={{height: 49}}
               >
                 {subItem.name}
               </MenuItem>

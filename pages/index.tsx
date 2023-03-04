@@ -74,7 +74,7 @@ const Home: NextPage = () => {
     <Box>
       <Banner items={items} />
       <Container maxWidth="xl">
-        <Category data={categories.data} />
+        <Category />
         <Product items={mockApiItems} callback={callback} />
         <News data={categories.data.slice(0, 3)} />
         <About />
