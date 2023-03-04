@@ -72,7 +72,7 @@ const Home: NextPage = () => {
 
   return (
     <Box>
-      <Banner items={items} />
+      <Banner />
       <Container maxWidth="xl">
         <Category />
         <Product items={mockApiItems} callback={callback} />

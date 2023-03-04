@@ -1,7 +1,7 @@
 import * as z from 'zod'
 import errors from '@/constants/errors'
 
-const MAX_FILE_SIZE = 500000
+const MAX_FILE_SIZE = 2000000
 const ACCEPTED_IMAGE_TYPES = [
   'image/jpeg',
   'image/jpg',

@@ -1,7 +1,7 @@
 import * as z from 'zod'
 import errors from '@/constants/errors'
 
-const MAX_FILE_SIZE = 2000000
+const MAX_FILE_SIZE = 30000000
 const ACCEPTED_IMAGE_TYPES = [
   'image/jpeg',
   'image/jpg',
@@ -10,16 +10,13 @@ const ACCEPTED_IMAGE_TYPES = [
 ]
 
 const schema = z.object({
-  name: z.string().min(1, { message: errors.required }),
-  tag: z.string().min(1, { message: errors.required }),
   description: z.string().min(1, { message: errors.required }),
-  category_id: z.number().min(1, { message: errors.required }),
   images: z
     .custom<File[]>()
     .refine((files) => {
       if (files?.length === 0 || !files) return true
       return files?.[0]?.size <= MAX_FILE_SIZE
-    }, `Max file size is 5MB.`)
+    }, `Max file size is 20MB.`)
     .refine((files) => {
       if (files?.length === 0 || !files) return true
       return ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type)
@@ -29,7 +26,7 @@ const schema = z.object({
     .refine((files) => {
       if (files?.length === 0 || !files) return true
       return files?.[0]?.size <= MAX_FILE_SIZE
-    }, `Max file size is 5MB.`)
+    }, `Max file size is 20MB.`)
     .refine((files) => {
       if (files?.length === 0 || !files) return true
       return ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type)

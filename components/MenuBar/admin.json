@@ -8,6 +8,11 @@
     "name": "Management",
     "subItems": [
       {
+        "name": "Banners",
+        "path": "/admin/banners",
+        "subItems": []
+      },
+      {
         "name": "Categories",
         "path": "/admin/categories",
         "subItems": []
