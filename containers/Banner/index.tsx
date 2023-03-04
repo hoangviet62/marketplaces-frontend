@@ -44,6 +44,7 @@ const Banners = () => {
   const onSubmit = (id: number | undefined, data: BannerPayload) => {
     const formData = new FormData()
     formData.append('description', data.description)
+    console.log(data)
     formData.append('link_to', data.linkTo)
 
     if (data.images) {
@@ -62,7 +63,7 @@ const Banners = () => {
     hideModal()
   }
 
-  const actionButton = { text: 'Create' }
+  const actionButton = { text: 'New' }
   const fields = [
     {
       accessorKey: 'id',
@@ -70,6 +71,10 @@ const Banners = () => {
     },
     {
       accessorKey: 'description',
+      header: 'Title',
+    },
+    {
+      accessorKey: 'linkTo',
       header: 'Description',
     },
     {
@@ -127,7 +132,8 @@ const Banners = () => {
     const id = record?.id
     const formAction: string = id ? `Edit` : `Create`
 
-    // setValue("name", id ? record.name : "")
+    setValue("description", id ? record.description : "")
+    setValue("linkTo", id ? record.linkTo : "")
 
     return <form onSubmit={handleSubmit(async (data) => { onSubmit(id, data) })}>
       <Box sx={{ display: 'block', justifyContent: 'center' }}>
@@ -135,7 +141,7 @@ const Banners = () => {
         <Input
           key={`description_${record?.id}`}
           fieldName="description"
-          labelName="Description"
+          labelName="Title"
           errors={errors}
           register={register}
           type="text"
@@ -143,7 +149,7 @@ const Banners = () => {
         <Input
           key={`link_to_${record?.id}`}
           fieldName="linkTo"
-          labelName="Link"
+          labelName="Description"
           errors={errors}
           register={register}
           type="text"
@@ -151,14 +157,6 @@ const Banners = () => {
         {!id && <Input
           fieldName="images"
           labelName="Upload Image"
-          errors={errors}
-          register={register}
-          type="file"
-          control={control}
-        />}
-        {!id && <Input
-          fieldName="medias"
-          labelName="Upload Media"
           errors={errors}
           register={register}
           type="file"

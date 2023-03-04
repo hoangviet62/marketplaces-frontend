@@ -11,6 +11,7 @@ const ACCEPTED_IMAGE_TYPES = [
 
 const schema = z.object({
   description: z.string().min(1, { message: errors.required }),
+  linkTo: z.string().min(1, { message: errors.required }),
   images: z
     .custom<File[]>()
     .refine((files) => {

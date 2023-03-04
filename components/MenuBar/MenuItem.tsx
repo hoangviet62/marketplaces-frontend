@@ -47,7 +47,7 @@ const MenuPopupItems = (item: Props) => {
     <PopupState variant="popover" popupId="demo-popup-menu">
       {(popupState: any) => (
         <React.Fragment>
-          <MenuButton variant="text" {...path ? { onClick: () => Router.push(path) } : { ...bindTrigger(popupState) }}>
+          <MenuButton variant="text" sx={{textTransform: 'inherit'}} {...path ? { onClick: () => Router.push(path) } : { ...bindTrigger(popupState) }}>
             {name}
           </MenuButton>
           <MenuContainer {...bindMenu(popupState)} sx={{ borderRadius: 0 }}>

@@ -20,7 +20,7 @@ type SwiperProps = {
 const StyledSwiper = styled(Swiper, {
   shouldForwardProp: (prop) => prop !== 'isBanner',
 })<SwiperProps>(({ theme, isBanner }) => ({
-  paddingBottom: '3rem',
+  // paddingBottom: '3rem',
   '& .swiper-wrapper': {
     cursor: 'auto !important',
     paddingBottom: isBanner ? '0' : '50px',

@@ -68,7 +68,7 @@ const Products = () => {
     hideModal()
   }
 
-  const actionButton = { text: 'Create' }
+  const actionButton = { text: 'New' }
   const fields = [
     {
       accessorKey: 'id',

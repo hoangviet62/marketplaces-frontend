@@ -7,7 +7,7 @@ import { CardProps } from '@/interfaces/card-props'
 import { styled } from '@mui/material/styles'
 
 const StyledBackgroundCard = styled(Card)(({}) => ({
-  marginLeft: '-50px',
+  marginLeft: '-51px',
   minHeight: '50vh',
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover',
@@ -40,8 +40,8 @@ const MediaCard: React.FC<CardProps> = ({
         height: '100%',
         position: 'absolute',
         width: '100%',
-        top: '38%',
-        left: '7%'
+        top: '33%',
+        left: '1%'
       }}>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div" color="common.white">

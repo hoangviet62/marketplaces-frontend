@@ -6,6 +6,7 @@ import MenuItem from './MenuItem'
 import { useUser } from '@/hooks/useAuth'
 import { User } from '@/enums'
 import { MainMenu } from './types'
+import Divider from '@mui/material/Divider';
 
 const MainMenu = styled(Box)(({ theme }) => ({
   height: 49,
@@ -33,12 +34,15 @@ const MenuBar = () => {
   return (
     <div>
       <MainMenu>
+      <Divider component="div" role="presentation" variant="middle" sx={{borderWidth: 0.1, m: 0}}/>
         {MenuData.map((menu: MainMenu, index) => (
-          <MenuItem
-            key={index}
-            name={menu.name}
-            {...menu?.path ?  { path: menu?.path } : { subItems: menu.subItems }}
-          />
+          <div key={`menu_${index}`} style={{display: 'contents'}}>
+            <MenuItem
+              name={menu.name}
+              {...menu?.path ?  { path: menu?.path } : { subItems: menu.subItems }}
+            />
+            <Divider component="div" role="presentation" variant="middle" sx={{borderWidth: 0.1, m: 0}}/>
+          </div>
         ))}
         <div style={{ marginLeft: 'auto' }}>
           <MenuItem
