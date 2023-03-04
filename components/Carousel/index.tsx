@@ -48,6 +48,7 @@ const Carousel: React.FC<CarouselProps> = ({
   CardComponent = MediaCard,
   itemsPerView = 1,
   isBanner = false,
+  handleClickCallback
 }) => {
   const [isLastItem, setLastItem] = useState<boolean>(false)
 
@@ -110,7 +111,7 @@ const Carousel: React.FC<CarouselProps> = ({
         }}
       >
         {items?.map((item, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} onClick={() => handleClickCallback(item.id)}>
             <CardComponent
               image={item.image}
               title={item.title}

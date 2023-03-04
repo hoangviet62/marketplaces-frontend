@@ -15,6 +15,7 @@ import { useState } from 'react'
 import Loading from '@/components/Loading'
 import ModalProvider from '@/providers/modal'
 import '../public/css/global.css'
+import UIProvider from '@/providers/ui'
 
 const roboto = localFont({
   src: [
@@ -102,18 +103,20 @@ function MyApp({ Component, pageProps }: AppProps) {
                 setLoading: setLoading,
               }}
             >
-              <div id="holder" className={roboto.className}>
-                <Header />
-                <MenuBar />
-                <div id="body">
-                  <ProtectedRoute>
-                    <Component {...pageProps} />
-                    {loading && <Loading />}
-                  </ProtectedRoute>
-                  <Toast />
+              <UIProvider>
+                <div id="holder" className={roboto.className}>
+                  <Header />
+                  <MenuBar />
+                  <div id="body">
+                    <ProtectedRoute>
+                      <Component {...pageProps} />
+                      {loading && <Loading />}
+                    </ProtectedRoute>
+                    <Toast />
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
-              </div>
+              </UIProvider>
             </LoadingContext.Provider>
           </ModalProvider>
         </ThemeProvider>

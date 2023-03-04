@@ -1,23 +1,27 @@
-import * as React from 'react';
-import { alpha, styled } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
-import LogoDevIcon from '@mui/icons-material/LogoDev';
-import HistoryIcon from '@mui/icons-material/History';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import Link from '@mui/material/Link';
+import * as React from 'react'
+import { alpha, styled } from '@mui/material/styles'
+import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import Toolbar from '@mui/material/Toolbar'
+import IconButton from '@mui/material/IconButton'
+import Typography from '@mui/material/Typography'
+import InputBase from '@mui/material/InputBase'
+import Badge from '@mui/material/Badge'
+import MenuItem from '@mui/material/MenuItem'
+import Menu from '@mui/material/Menu'
+import SearchIcon from '@mui/icons-material/Search'
+import AccountCircle from '@mui/icons-material/AccountCircle'
+import MailIcon from '@mui/icons-material/Mail'
+import NotificationsIcon from '@mui/icons-material/Notifications'
+import MoreIcon from '@mui/icons-material/MoreVert'
+import LogoDevIcon from '@mui/icons-material/LogoDev'
+import HistoryIcon from '@mui/icons-material/History'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import Link from '@mui/material/Link'
+import { useUIContext } from '@/context/ui'
+import { useUser } from '@/hooks/useAuth'
+import useAddCart from '@/hooks/Cart/useCreateCart'
+import useUserCart from '@/hooks/Cart/useUserCart'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -33,7 +37,7 @@ const Search = styled('div')(({ theme }) => ({
     marginLeft: theme.spacing(3),
     width: 500,
   },
-}));
+}))
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
@@ -43,7 +47,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-}));
+}))
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
@@ -57,38 +61,43 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
       width: '20ch',
     },
   },
-}));
+}))
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   background: theme.palette.primary.dark,
-}));
+}))
 
 export default function PrimarySearchAppBar() {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
-    React.useState<null | HTMLElement>(null);
+    React.useState<null | HTMLElement>(null)
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const { showCart, setShowCart } = useUIContext()
+  const { data } = useUser()
+  const { mutate } = useAddCart()
+  const { data: userCart } = useUserCart()
+  
+  const isMenuOpen = Boolean(anchorEl)
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
+    setMobileMoreAnchorEl(null)
+  }
 
   const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
+    setAnchorEl(null)
+    handleMobileMenuClose()
+  }
 
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
+    setMobileMoreAnchorEl(event.currentTarget)
+  }
 
-  const menuId = 'primary-search-account-menu';
+  const menuId = 'primary-search-account-menu'
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -108,9 +117,29 @@ export default function PrimarySearchAppBar() {
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
-  );
+  )
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const handleCartClick = () => {
+    if (data) {
+      const { data: user } = data
+      if (!user.cart) {
+        mutate()
+      } else {
+        console.log("Already got cart")
+      }
+    }
+
+    setShowCart(!showCart)
+
+    // if (!user.cart) {
+    //   setShowCart(!showCart)
+    // } else {
+
+    // }
+    // setShowCart(!showCart)
+  }
+
+  const mobileMenuId = 'primary-search-account-menu-mobile'
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
@@ -160,7 +189,7 @@ export default function PrimarySearchAppBar() {
         <p>Profile</p>
       </MenuItem>
     </Menu>
-  );
+  )
 
   return (
     <div id="header">
@@ -213,8 +242,9 @@ export default function PrimarySearchAppBar() {
                 size="large"
                 aria-label="show 17 new notifications"
                 color="inherit"
+                onClick={handleCartClick}
               >
-                <Badge badgeContent={17} color="error">
+                <Badge badgeContent={userCart?.cartItems?.length} color="error">
                   <ShoppingCartIcon />
                 </Badge>
               </IconButton>
@@ -235,7 +265,7 @@ export default function PrimarySearchAppBar() {
         </StyledAppBar>
         {renderMobileMenu}
         {renderMenu}
-      </Box >
+      </Box>
     </div>
-  );
+  )
 }
