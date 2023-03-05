@@ -236,7 +236,7 @@ export default function PrimarySearchAppBar() {
                 color="inherit"
               >
                 <HistoryIcon />
-                <Typography sx={{ ml: 1 }}>Quick Order</Typography>
+                <Typography variant="body2" sx={{ ml: 1 }}>Quick Order</Typography>
               </IconButton>
               <IconButton
                 size="large"

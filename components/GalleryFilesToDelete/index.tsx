@@ -26,21 +26,16 @@ const GalleryFilesToDelete: React.FC<InputProps> = ({
   const [deletedFiles, setDeletedFiles] = useState<any>([])
 
   const { field } = useController({ name: fieldName, control })
-  //   field.onChange(uploadedFiles.concat(Array.from(files)))
-
-  console.log('field', field)
 
   useEffect(() => {
     field.onChange(deletedFiles.map((file: any) => file.id))
   }, [deletedFiles])
 
   const handleCheck = (
-    _: React.MouseEvent<HTMLLabelElement, MouseEvent>,
+    _: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     item: any
   ) => {
-    // field.onChange(cloneUploadedFiles)
     const isExist = deletedFiles.findIndex((f: any) => f.id === item.id) > -1
-    console.log(isExist)
     if (isExist) {
       setDeletedFiles((current: any) =>
         current.filter((file: any) => file.id !== item.id)

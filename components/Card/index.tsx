@@ -24,21 +24,14 @@ const MediaCard: React.FC<CardProps> = ({
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
   const renderSimpleCard = () => (
-    <Card
-      elevation={2}
-      raised
-      sx={{
-        maxWidth: 320,
-        margin: '0 auto',
-        padding: '0.1em',
-      }}
-    >
+    <Card elevation={2} sx={{maxHeight: 271, minWidth: 280}}>
       <CardHeader>&nbsp;</CardHeader>
       <CardMedia
         image={image}
         component="img"
-        height={200}
-        sx={{ padding: '1em 1em 0 1em', objectFit: 'contain' }}
+        height={150}
+        width={150}
+        sx={{ objectFit: 'contain' }}
       />
       <CardContent>
         <Typography
@@ -46,11 +39,10 @@ const MediaCard: React.FC<CardProps> = ({
           variant="h6"
           align="center"
           component="div"
-          sx={{ fontWeight: 'bold' }}
         >
           {title}
         </Typography>
-        <Typography variant="subtitle1" align="center" noWrap>
+        <Typography variant="body1" align="center" noWrap>
           {content}
         </Typography>
       </CardContent>
@@ -70,11 +62,10 @@ const MediaCard: React.FC<CardProps> = ({
     >
       <div
         style={{
-          height: '100%',
-          position: 'absolute',
-          width: '100%',
-          top: isMobile ? '40%' : 230,
-          left: '1%',
+          position: 'fixed',
+          left: 'var(--swiper-navigation-sides-offset, -20px)',
+          right: 'auto',
+          top: `var(--swiper-navigation-top-offset, ${isMobile ? 30 : 40 }%)`,
         }}
       >
         <CardContent>

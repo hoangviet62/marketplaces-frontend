@@ -56,23 +56,38 @@ const theme = createTheme({
   },
   typography: {
     h3: {
-      fontSize: '9vh',
-      fontWeight: 'bold',
-      letterSpacing: 0,
-    },
-    h4: {
-      fontSize: '7vh',
-      fontWeight: 'bold',
-      letterSpacing: 0,
-    },
-    h5: {
       fontSize: '3vh',
       fontWeight: 'bold',
       letterSpacing: 0,
     },
+    h4: {
+      fontSize: '1.8em',
+      fontWeight: 'bold',
+      letterSpacing: 0,
+    },
+    h5: {
+      fontSize: '1.5em',
+      fontWeight: 'bold',
+      letterSpacing: 0,
+    },
+    h6: {
+      fontSize: '1em',
+      fontWeight: 'bold',
+      letterSpacing: 0,
+    },
+    subtitle1: {
+      fontSize: '0.8em',
+      fontWeight: 600,
+    },
+    subtitle2: {
+      fontSize: '0.7em',
+      fontWeight: 500,
+    },
+    body1: {
+      fontSize: '0.7em',
+    },
     body2: {
-      fontSize: '1.7vh',
-      fontWeight: 400,
+      fontSize: '0.6em',
     },
   },
   components: {

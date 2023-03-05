@@ -4,8 +4,9 @@ import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state'
-import { styled } from '@mui/material'
+import { styled, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
+import { storage } from '@/utils/cookie'
 
 type Props = {
   name: string;
@@ -27,11 +28,16 @@ const MenuButton = styled(Button)(({ theme }) => ({
   },
 }))
 
-const MenuContainer = styled(Menu)(() => ({
+const MenuContainer = styled(Menu)(({theme}) => ({
   '& .MuiPaper-root': {
     borderRadius: 0,
     minWidth: 300
   },
+  '& .MuiButtonBase-root': {
+    '&:hover': {
+      color: theme.palette.primary.main,
+    }
+  }
 }))
 
 const MenuPopupItems = (item: Props) => {
@@ -43,11 +49,21 @@ const MenuPopupItems = (item: Props) => {
     popupState.close()
   }
 
+  const handleParentClick = (path: string) => {
+    if (path.indexOf('/logout') > -1) {
+      storage.clearToken()
+      Router.push("/")
+      return
+    }
+
+    Router.push(path)
+  }
+
   return (
     <PopupState variant="popover" popupId="demo-popup-menu">
       {(popupState: any) => (
         <React.Fragment>
-          <MenuButton variant="text" sx={{textTransform: 'inherit'}} {...path ? { onClick: () => Router.push(path) } : { ...bindTrigger(popupState) }}>
+          <MenuButton variant="text" sx={{textTransform: 'inherit'}} {...path ? { onClick: () => handleParentClick(path) } : { ...bindTrigger(popupState) }}>
             {name}
           </MenuButton>
           <MenuContainer {...bindMenu(popupState)} sx={{ borderRadius: 0 }}>
@@ -57,7 +73,7 @@ const MenuPopupItems = (item: Props) => {
                 onClick={() => handleClick(popupState, subItem.path)}
                 sx={{height: 49}}
               >
-                {subItem.name}
+                <Typography variant="inherit">{subItem.name}</Typography>
               </MenuItem>
             ))}
           </MenuContainer>

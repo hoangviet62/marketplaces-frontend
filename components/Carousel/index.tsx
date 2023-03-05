@@ -10,7 +10,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import { styled } from '@mui/material/styles'
-import { Box } from '@mui/material'
+import { Box, useMediaQuery, useTheme } from '@mui/material'
 import MediaCard from '../Card'
 
 type SwiperProps = {
@@ -51,6 +51,8 @@ const Carousel: React.FC<CarouselProps> = ({
   handleClickCallback
 }) => {
   const [isLastItem, setLastItem] = useState<boolean>(false)
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   const handleNext = () => {
     if (isBanner) return
@@ -100,13 +102,13 @@ const Carousel: React.FC<CarouselProps> = ({
             spaceBetween: 10
           },
         }}
-        // allowTouchMove={false}
-        // spaceBetween={30}
         slidesPerView={itemsPerView}
         modules={AddInComponents}
         onReachEnd={() => setLastItem(true)}
         style={{
-          margin: !isBanner ? '0 50px' : '0',
+          margin: !isBanner ? '0 5px' : 0,
+          marginRight: isMobile ? (isBanner ? 0 : 5) : (isBanner ? 0 : 50),
+          marginLeft: isMobile ? (isBanner ? 0 : 5) : (isBanner ? 0 : 50),
           position: 'unset',
         }}
       >

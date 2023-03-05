@@ -45,11 +45,18 @@ const MenuBar = () => {
           </div>
         ))}
         <div style={{ marginLeft: 'auto' }}>
-          <MenuItem
-            key={'SignIn'}
-            name={isSignedIn ? `Welcome, ${data?.data.username}`: 'Sign In or Register'}
-            path="/login"
-          />
+          {isSignedIn ? 
+            <MenuItem
+              key={'SignOut'}
+              name={`Welcome, ${data?.data.username}`}
+              path="/logout"
+            /> : 
+            <MenuItem
+              key={'SignIn'}
+              name="Sign In or Register"
+              path="/login"
+            />
+            }
         </div>
       </MainMenu>
     </div>

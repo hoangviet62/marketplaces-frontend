@@ -1,17 +1,11 @@
 import * as React from 'react'
-import { Box, styled, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import MediaCard from '@/components/Card'
 import Carousel from '@/components/Carousel'
 import useProducts from '@/hooks/Product/useProducts'
 import { Product } from '@/interfaces/product'
 import useCreateCartItem from '@/hooks/CartItem/useCreateCartItem'
 import useUserCart from '@/hooks/Cart/useUserCart'
-
-const CustomWrapper = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.common.white,
-  boxShadow: `0 0 0 100vmax ${theme.palette.common.white}`,
-  clipPath: 'inset(0 -100vmax)',
-}))
 
 const Product = () => {
   const { data: products } = useProducts()
@@ -34,10 +28,10 @@ const Product = () => {
   }
 
   return (
-    <CustomWrapper>
+    <Box>
       <Typography
         gutterBottom
-        variant="h5"
+        variant="h4"
         component="div"
         textAlign="center"
         sx={{ pt: 7, fontWeight: 'bold' }}
@@ -52,7 +46,7 @@ const Product = () => {
         itemsPerView={5}
         handleClickCallback={handleClick}
       />
-    </CustomWrapper>
+    </Box>
   )
 }
 

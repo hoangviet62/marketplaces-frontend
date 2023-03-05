@@ -18,6 +18,7 @@ import { useLogin } from '@/hooks/useAuth'
 import Container from '@/components/Container'
 import { User } from '@/enums'
 import useUserCart from '@/hooks/Cart/useUserCart'
+import { toast } from '@/utils/toast';
 
 const Login: NextPage = () => {
   const {
@@ -42,6 +43,7 @@ const Login: NextPage = () => {
         }
         refetch()
       },
+      onError: () => toast("Invalid username or password", `error`)
     })
   }
 

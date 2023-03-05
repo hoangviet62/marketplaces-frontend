@@ -20,7 +20,7 @@ const CartMenu = () => {
   const matches = useMediaQuery(theme.breakpoints.down('md'))
 
   const renderCartItems = () => {
-    return data?.cartItems?.map((item, index) => (
+    return data?.cartItems?.map((item: unknown, index: number) => (
       <CartItem item={item} key={index} />
     ))
   }
