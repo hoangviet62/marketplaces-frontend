@@ -1,5 +1,6 @@
 import { MetaData } from "@/components/Table/types";
 import { Image } from './image'
+import { Supplier } from "./supplier";
 
 export interface ProductPayload {
   name: string
@@ -15,6 +16,8 @@ export type Product = {
   id: number;
   name: string;
   description: string;
+  tag: string;
+  supplier: Supplier;
   images: Image[];
   createdAt: string;
   updatedAt: string;

@@ -76,18 +76,18 @@ const theme = createTheme({
       letterSpacing: 0,
     },
     subtitle1: {
-      fontSize: '0.8em',
+      fontSize: '.9em',
       fontWeight: 600,
     },
     subtitle2: {
-      fontSize: '0.7em',
+      fontSize: '.8em',
       fontWeight: 500,
     },
     body1: {
-      fontSize: '0.7em',
+      fontSize: '.8em',
     },
     body2: {
-      fontSize: '0.6em',
+      fontSize: '.7em',
     },
   },
   components: {
