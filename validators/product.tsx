@@ -14,6 +14,8 @@ const schema = z.object({
   tag: z.string().min(1, { message: errors.required }),
   description: z.string().min(1, { message: errors.required }),
   category_id: z.number().min(1, { message: errors.required }),
+  delete_images: z.array(z.number()).optional(),
+  delete_medias: z.array(z.number()).optional(),
   images: z
     .custom<File[]>()
     .refine((files) => {

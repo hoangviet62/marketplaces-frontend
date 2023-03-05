@@ -26,7 +26,9 @@ const CartItem = ({ item }: any) => {
         justifyContent={'space-between'}
       >
         <Avatar
-          src={`${process.env.apiUrl}${item.product.images[0].url}`}
+          src={`${process.env.apiUrl}${
+            item.product?.images ? item.product?.images[0]?.url : ''
+          }`}
           sx={{ width: 96, height: 96, mr: 2 }}
         />
         <Box display="flex" flexDirection={'column'}>
@@ -36,6 +38,8 @@ const CartItem = ({ item }: any) => {
               {item.product.description}
             </Typography>
           )}
+          {item.product.price && <Typography variant="subtitle2">${item.price}</Typography>}
+          <Typography variant="subtitle2">Quantity: {item.quantity}</Typography>
         </Box>
         <IconButton
           sx={{
@@ -48,7 +52,9 @@ const CartItem = ({ item }: any) => {
         </IconButton>
       </Box>
       {matches && (
-        <Typography variant="subtitle2">{item.product.description}</Typography>
+        <Typography sx={{ textAlign: 'center', mb:2 }} variant="subtitle2">
+          {item.product.description}
+        </Typography>
       )}
       <Divider variant="inset" />
     </Box>

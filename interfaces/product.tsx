@@ -8,7 +8,9 @@ export interface ProductPayload {
   tag: string
   category_id: number | string
   images?: File[]
-  medias?: File[]
+  medias?: File[],
+  delete_images?: [],
+  delete_medias?: [],
 }
 
 

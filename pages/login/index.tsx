@@ -17,6 +17,7 @@ import { trimFormField } from '@/utils/trim-form-field'
 import { useLogin } from '@/hooks/useAuth'
 import Container from '@/components/Container'
 import { User } from '@/enums'
+import useUserCart from '@/hooks/Cart/useUserCart'
 import { toast } from '@/utils/toast';
 
 const Login: NextPage = () => {
@@ -29,18 +30,18 @@ const Login: NextPage = () => {
   })
   const login = useLogin()
   const router = useRouter()
-
+  const { refetch } = useUserCart()
+  
   const onSubmit = (data: LoginPayload) => {
     const trimedForm = trimFormField(data)
     login.mutate(trimedForm, {
       onSuccess: ({ data }) => {
         if (data?.role === User.ADMIN) {
           router.push('/admin')
-        } else if (data?.role === User.CUSTOMER) {
-          router.push('/customers')
-        } else {
+        }  else {
           router.push('/')
         }
+        refetch()
       },
       onError: () => toast("Invalid username or password", `error`)
     })

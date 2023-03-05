@@ -15,4 +15,5 @@ export interface InputProps {
   type?: string
   multiple?: boolean
   control?: Control<any, any>
+  value?: any
 }
