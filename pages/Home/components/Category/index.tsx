@@ -24,14 +24,14 @@ const Category = () => {
   const isMedium = useMediaQuery(theme.breakpoints.between('md', 'lg'))
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'))
   let numberToScale = 2
-  if (isMedium) numberToScale = 4
+  if (isMedium) numberToScale = 6
   if (isDesktop) numberToScale = 6
 
   return (
-    <Box sx={{ my: 10 }}>
+    <Box sx={{ pt: 5, pb: 5, background: theme.palette.common.white }}>
       <Typography
         gutterBottom
-        variant="h5"
+        variant="h4"
         component="div"
         textAlign="center"
         sx={{ mb: 5 }}
@@ -40,8 +40,8 @@ const Category = () => {
         Categories
       </Typography>
       {categories?.data && <ImageList
-        gap={8}
-        sx={{ mb: 8 }}
+        gap={4}
+        sx={{ mb: 8, display: 'grid' }}
         cols={numberToScale}
       >
         {categories.data.map((category: Category) => (
@@ -51,12 +51,12 @@ const Category = () => {
               width="0"
               height="0"
               sizes="100vw"
-              style={{ width: 210, height: 148 }}
+              style={{ width: 130, height: 100 }}
               />
             <ImageListItemBarCustom
               title={
                 <Typography
-                  sx={{ fontWeight: 'bold' }}
+                  sx={{ fontWeight: 'bold', pl: 2, pr: 2 }}
                   variant="subtitle1"
                   whiteSpace="normal"
                   color="primary"

@@ -4,7 +4,7 @@ import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state'
-import { styled } from '@mui/material'
+import { styled, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 
 type Props = {
@@ -57,7 +57,7 @@ const MenuPopupItems = (item: Props) => {
                 onClick={() => handleClick(popupState, subItem.path)}
                 sx={{height: 49}}
               >
-                {subItem.name}
+                <Typography variant="h6">{subItem.name}</Typography>
               </MenuItem>
             ))}
           </MenuContainer>

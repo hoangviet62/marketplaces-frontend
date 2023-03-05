@@ -13,13 +13,17 @@ import Image from 'next/image'
 
 const News: React.FC<CategoryProps> = ({ data }) => {
   const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+  const isMedium = useMediaQuery(theme.breakpoints.between('md', 'lg'))
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'))
+  let numberToScale = 1
+  if (isMedium) numberToScale = 3
+  if (isDesktop) numberToScale = 3
 
   return (
-    <Box sx={{ my: 10, textAlign: 'center' }}>
+    <Box sx={{ pt: 5, pb: 5, background: theme.palette.common.white }}>
       <Typography
         gutterBottom
-        variant="h5"
+        variant="h4"
         component="div"
         textAlign="center"
         sx={{ mb: 5 }}
@@ -28,18 +32,20 @@ const News: React.FC<CategoryProps> = ({ data }) => {
         Latest News
       </Typography>
       <ImageList
-        gap={20}
-        sx={{
-          mb: 8,
-          display: 'inline-flex'
-        }}
-        cols={isMobile ? 1 : 5}
+        gap={4}
+        sx={{ mb: 4, mr: 2, ml: 2, display: 'grid' }}
+        cols={numberToScale}
       >
         {data &&
           data.map((item, index) => (
-            <ImageListItem key={index}>
+            <ImageListItem key={index} sx={{alignItems: 'center'}}>
               <Image src={`${item.image}?w=400&fit=crop&auto=format`}
-                alt="Image for category" height={300} width={400} />
+                alt="Image for category"
+                width="0"
+                height="0"
+                sizes="100vw"
+                style={{ width: '100%', height: 150, objectFit: 'contain' }}
+              />
               <ImageListItemBar
                 title={
                   <Typography

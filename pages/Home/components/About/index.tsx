@@ -13,10 +13,10 @@ const About: React.FC = () => {
     <CustomWrapper>
       <Typography
         gutterBottom
-        variant="h5"
+        variant="h4"
         component="div"
         textAlign="center"
-        sx={{ pt: 7 }}
+        sx={{ pt: 4 }}
       >
         About us
       </Typography>

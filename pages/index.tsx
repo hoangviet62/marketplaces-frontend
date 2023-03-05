@@ -1,8 +1,7 @@
 import Banner from '@/components/Banner'
 import { CardProps } from '@/interfaces/card-props'
-import { Box, Container } from '@mui/material'
+import { Box } from '@mui/material'
 import type { NextPage } from 'next'
-import { useState } from 'react'
 import About from './Home/components/About'
 import Category from './Home/components/Category'
 import News from './Home/components/News'
@@ -60,7 +59,7 @@ const items: CardProps[] = [
 ]
 
 const Home: NextPage = () => {
-  const [mockApiItems, setMockApiItems] = useState<CardProps[]>(items)
+  // const [mockApiItems, setMockApiItems] = useState<CardProps[]>(items)
 
   // const callback = () => {
   //   // call api here
@@ -72,12 +71,10 @@ const Home: NextPage = () => {
   return (
     <Box>
       <Banner />
-      <Container maxWidth="xl">
-        <Category />
-        <Product />
-        <News data={items.slice(0,3)} />
-        <About />
-      </Container>
+      <Category />
+      <Product />
+      <News data={items.slice(0,3)} />
+      <About />
     </Box>
   )
 }
