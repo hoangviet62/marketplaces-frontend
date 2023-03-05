@@ -1,4 +1,5 @@
-import {useState} from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {useEffect, useState} from "react";
 import { 
   Button,
   ButtonGroup,
@@ -13,9 +14,13 @@ const CustomButton = styled(Button)(({ theme }) => ({
   }
 }))
 
-const QuantityButton = () => {
+const QuantityButton = ({ callback }: any) => {
   const [quantity, setQuantity] = useState(1)
 
+  useEffect(() => {
+    callback && callback(quantity)
+  }, [quantity])
+  
   const handleIncrement = () => {
     setQuantity(quantity + 1)
   };
