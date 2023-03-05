@@ -12,6 +12,7 @@ const useUserCart = () => {
         onError: (err: any) => {
             toast(err.error, "error")
         },
+        enabled: false,
     })
 
     useEffect(() => {

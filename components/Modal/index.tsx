@@ -13,17 +13,17 @@ const style = {
   // border: '2px solid #000',
   boxShadow: 24,
   p: 2,
-};
-
+}
 
 const Modal: React.FC<ModalProps> = ({ isOpen, modalContent }) => {
   return (
     <MUIModal
       open={isOpen}
-      aria-labelledby="modal-title" aria-describedby="modal-description">
-      <Box sx={style}>
-        {modalContent}
-      </Box>
+      aria-labelledby="modal-title"
+      aria-describedby="modal-description"
+      sx={{ overflow: 'auto ' }}
+    >
+      <Box sx={style}>{modalContent}</Box>
     </MUIModal>
   )
 }
