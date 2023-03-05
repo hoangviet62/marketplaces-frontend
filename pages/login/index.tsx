@@ -17,6 +17,7 @@ import { trimFormField } from '@/utils/trim-form-field'
 import { useLogin } from '@/hooks/useAuth'
 import Container from '@/components/Container'
 import { User } from '@/enums'
+import { toast } from '@/utils/toast';
 
 const Login: NextPage = () => {
   const {
@@ -41,6 +42,7 @@ const Login: NextPage = () => {
           router.push('/')
         }
       },
+      onError: () => toast("Invalid username or password", `error`)
     })
   }
 
