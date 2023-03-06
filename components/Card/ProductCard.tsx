@@ -9,10 +9,10 @@ import {
   Button,
   useMediaQuery,
 } from '@mui/material'
-import { Product } from '@/interfaces/product'
 import QuantityButton from '../QuantityButton'
 import useCreateCartItem from '@/hooks/CartItem/useCreateCartItem'
 import useUserCart from '@/hooks/Cart/useUserCart'
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 const ProductCard = ({ product }: { product: Product }) => {
   const productImage = `${process.env.apiUrl}${product?.images[0].url}`
@@ -35,17 +35,17 @@ const ProductCard = ({ product }: { product: Product }) => {
     mutate(formData)
   }
 
-  return (
-    <Box sx={{ display: 'flex', width: 1 }} component="div">
-      <Grid container spacing={1}>
-        <Grid item xs={isMobile ? 4 : 2}>
-          <CardMedia
-            image={productImage}
-            component="img"
-            sx={{ objectFit: 'contain', height: 150, width: 150 }}
-          />
-        </Grid>
-        <Grid item xs={isMobile ? 8 : 5} textAlign="left" alignSelf="center">
+  const desktopView = () => {
+    return <Grid container spacing={1} justify="flex-end" alignItems="center">
+      <Grid item xs={2} sx={{ height: 1 }}>
+        <CardMedia
+          image={productImage}
+          component="img"
+          sx={{ objectFit: 'contain', height: 150, width: '100%' }}
+        />
+      </Grid>
+      <Grid item xs={5} textAlign="left" alignSelf="center" sx={{ height: 1, display: 'flex' }}>
+        <div style={{ alignSelf: 'center', width: '100%' }}>
           <Typography
             gutterBottom
             variant="h6"
@@ -70,43 +70,123 @@ const ProductCard = ({ product }: { product: Product }) => {
           <Box
             sx={{
               display: 'inline-flex',
-              width: '100%',
+              width: '90%',
               justifyContent: 'space-between',
               alignItems: 'center',
             }}
           >
             <Chip
               label={
-                <Typography variant="subtitle1" sx={{ color: 'common.white' }}>
+                <Typography variant="caption" sx={{ color: 'common.white' }}>
                   {product?.tag}
                 </Typography>
               }
               color="primary"
             />
-            <Typography variant="subtitle1" color="primary">
+            <Typography variant="caption" color="primary">
               Extra Info 1
             </Typography>
-            <Typography variant="subtitle1" color="primary">
+            <Typography variant="caption" color="primary">
               Extra Info 2
             </Typography>
           </Box>
-        </Grid>
-        <Grid item xs={isMobile ? 4 : 2} textAlign="center" alignSelf="center">
-          <QuantityButton callback={handleQuantityClick} />
-        </Grid>
-        <Grid
-          item
-          xs={isMobile ? 8 : 3}
-          textAlign="center"
-          alignSelf="center"
-          sx={{ p: 2 }}
-        >
-          <Button variant="contained" fullWidth onClick={addToCart}>
+        </div>
+      </Grid>
+      <Grid item xs={2} textAlign="center" alignSelf="center" sx={{ height: 1, display: 'flex' }}>
+        <div style={{ alignSelf: 'center' }}><QuantityButton callback={handleQuantityClick} /></div>
+      </Grid>
+      <Grid
+        item
+        xs={3}
+        textAlign="center"
+        alignSelf="center"
+        sx={{ height: 1, display: 'flex' }}
+      >
+        <div style={{ alignSelf: 'center', width: '100%' }}>
+          <Button
+            variant="contained"
+            sx={{ borderRadius: 0 }}
+            fullWidth
+            onClick={addToCart}
+            startIcon={<AddShoppingCartIcon />}
+          >
             Add to Cart
           </Button>
-        </Grid>
+        </div>
       </Grid>
-    </Box>
+    </Grid>
+  }
+
+  const mobileView = () => {
+    return <Grid container spacing={1}>
+      <Grid item xs={5} sx={{ height: 1 }}>
+        <CardMedia
+          image={productImage}
+          component="img"
+          sx={{ objectFit: 'contain', height: 150, width: '100%' }}
+        />
+      </Grid>
+      <Grid item xs={7}>
+        <Typography
+          gutterBottom
+          variant="h6"
+          align="center"
+          component="div"
+          whiteSpace="normal"
+          textAlign="left"
+          color="primary"
+        >
+          Supplier Name {product?.id}
+        </Typography>
+        <Typography
+          variant="h5"
+          align="center"
+          component="div"
+          whiteSpace="normal"
+          textAlign="left"
+          color="primary"
+        >
+          {product?.name}
+        </Typography>
+        <Box
+          sx={{
+            display: 'inline-flex',
+            width: '90%',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <Chip
+            label={
+              <Typography variant="caption" sx={{ color: 'common.white' }}>
+                {product?.tag}
+              </Typography>
+            }
+            color="primary"
+          />
+        </Box>
+      </Grid>
+      <Grid item xs={5}>
+        <QuantityButton callback={handleQuantityClick} />
+      </Grid>
+      <Grid item xs={7}>
+        <Button
+          variant="contained"
+          sx={{ borderRadius: 0 }}
+          fullWidth
+          onClick={addToCart}
+          startIcon={<AddShoppingCartIcon />}
+        >
+          Add to Cart
+        </Button>
+      </Grid>
+    </Grid>
+  }
+
+  return (
+    <Box sx={{ width: 1 }} component="div" >
+      {isMobile ? mobileView() : desktopView()}
+    </Box >
   )
 }
 
