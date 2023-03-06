@@ -80,7 +80,7 @@ const theme = createTheme({
       fontWeight: 600,
     },
     subtitle2: {
-      fontSize: '.8em',
+      fontSize: '1em',
       fontWeight: 500,
     },
     body1: {
@@ -108,6 +108,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
         <title>{process.env.appName}</title>
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' />
       </Head>
       <ReactQueryProvider>
         <ThemeProvider theme={theme}>

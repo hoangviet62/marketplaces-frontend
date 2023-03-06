@@ -53,7 +53,7 @@ const Catalog = () => {
             <Box component={Paper} sx={{ borderRadius: 0 }}>
               <MenuList>
                 <MenuItem sx={{ '&:hover': { background: 'none' } }}>
-                  <Typography variant="subtitle1">Categories</Typography>
+                  <Typography variant="h6">Categories</Typography>
                 </MenuItem>
                 <CustomDivider />
                 {categoryResponse?.data.map((category: Category, index: number) => (
