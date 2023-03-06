@@ -13,6 +13,7 @@ import QuantityButton from '../QuantityButton'
 import useCreateCartItem from '@/hooks/CartItem/useCreateCartItem'
 import useUserCart from '@/hooks/Cart/useUserCart'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { Product } from '@/interfaces/product'
 
 const ProductCard = ({ product }: { product: Product }) => {
   const productImage = `${process.env.apiUrl}${product?.images[0].url}`
@@ -36,7 +37,7 @@ const ProductCard = ({ product }: { product: Product }) => {
   }
 
   const desktopView = () => {
-    return <Grid container spacing={1} justify="flex-end" alignItems="center">
+    return <Grid container spacing={1} alignItems="center">
       <Grid item xs={2} sx={{ height: 1 }}>
         <CardMedia
           image={productImage}
