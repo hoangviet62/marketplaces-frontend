@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { Box, styled } from '@mui/material'
-import customers from './customer.json'
 import admins from './admin.json'
 import MenuItem from './MenuItem'
 import { useUser } from '@/hooks/useAuth'
@@ -23,7 +22,7 @@ const MainMenu = styled(Box)(({ theme }) => ({
 
 const MenuBar = () => {
   const { data } = useUser()
-  const { data: menus } = useMenus()
+  const { data: menus = [] } = useMenus()
   let MenuData = menus
 
   if (data) {
