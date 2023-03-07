@@ -2,10 +2,10 @@ import Banner from '@/components/Banner'
 import { CardProps } from '@/interfaces/card-props'
 import { Box } from '@mui/material'
 import type { NextPage } from 'next'
-import About from '@/pages/home/components/About'
-import Category from '@/pages/home/components/Category'
-import News from '@/pages/home/components/News'
-import Product from '@/pages/home/components/Product'
+import About from './home/components/About'
+import Category from './home/components/Category'
+import News from './home/components/News'
+import Product from './home/components/Product'
 
 const items: CardProps[] = [
   {
