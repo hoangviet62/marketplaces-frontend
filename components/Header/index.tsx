@@ -2,6 +2,7 @@ import * as React from 'react'
 import { alpha, styled } from '@mui/material/styles'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
+import { useTheme } from '@mui/material'
 import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
@@ -24,6 +25,7 @@ import useAddCart from '@/hooks/Cart/useCreateCart'
 import useUserCart from '@/hooks/Cart/useUserCart'
 
 const Search = styled('div')(({ theme }) => ({
+  color: theme.palette.common.white,
   position: 'relative',
   borderRadius: 0,
   backgroundColor: alpha(theme.palette.common.white, 0.25),
@@ -68,6 +70,7 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
 }))
 
 export default function PrimarySearchAppBar() {
+  const theme = useTheme()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null)
@@ -76,7 +79,7 @@ export default function PrimarySearchAppBar() {
   const { data } = useUser()
   const { mutate } = useAddCart()
   const { data: userCart } = useUserCart()
-  
+
   const isMenuOpen = Boolean(anchorEl)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
@@ -214,7 +217,7 @@ export default function PrimarySearchAppBar() {
               aria-label="open drawer"
               sx={{ mr: 0.5 }}
             >
-              <Link href="/" underline="none" color="inherit">
+              <Link href="/" underline="none" color="common.white">
                 <LogoDevIcon sx={{ fontSize: 47 }} />
               </Link>
             </IconButton>
@@ -223,6 +226,7 @@ export default function PrimarySearchAppBar() {
               variant="h5"
               noWrap
               component="div"
+              color="common.white"
               sx={{ display: { xs: 'none', sm: 'block' } }}
             >
               <Link href="/" underline="none" color="inherit">
@@ -245,16 +249,17 @@ export default function PrimarySearchAppBar() {
               <IconButton
                 size="large"
                 aria-label="show 17 new notifications"
-                color="inherit"
+                sx={{ color: theme.palette.common.white }}
               >
                 <HistoryIcon />
-                <Typography variant="caption" sx={{ ml: 1 }}>Quick Order</Typography>
+                <Typography color="common.white" variant="caption" sx={{ ml: 1 }}>Quick Order</Typography>
               </IconButton>
               <IconButton
                 size="large"
                 aria-label="show 17 new notifications"
                 color="inherit"
                 onClick={handleCartClick}
+                sx={{ color: theme.palette.common.white }}
               >
                 <Badge badgeContent={userCart?.cartItems?.length} color="error">
                   <ShoppingCartIcon />
