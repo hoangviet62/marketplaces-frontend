@@ -12,11 +12,13 @@ import {
 import CartItem from '@/components/CartMenu/CartItem'
 import CloseIcon from '@mui/icons-material/Close'
 import useUserCart from '@/hooks/Cart/useUserCart'
+import useCreateOrder from '@/hooks/Order/useCreateOrder'
 
 const CartMenu = () => {
   const theme = useTheme()
   const { showCart, setShowCart } = useUIContext()
   const { data } = useUserCart()
+  const { mutate } = useCreateOrder()
   const matches = useMediaQuery(theme.breakpoints.down('md'))
 
   const renderCartItems = () => {
@@ -72,7 +74,11 @@ const CartMenu = () => {
         <Paper elevation={0} sx={{ mt: 2, width: ' 90%', padding: 4 }}>
           {data && renderCartItems()}
         </Paper>
-        <Button sx={{ mt: 'auto', mb: 3 }} variant="contained">
+        <Button
+          sx={{ mt: 'auto', mb: 3 }}
+          variant="contained"
+          onClick={() => mutate()}
+        >
           Checkout
         </Button>
       </Box>

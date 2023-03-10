@@ -17,6 +17,7 @@ import Input from '@/components/Input'
 import { useRouter } from 'next/router'
 import { useRegister } from '@/hooks/useAuth'
 import { trimFormField } from '@/utils/trim-form-field'
+import { toast } from '@/utils/toast'
 
 const StyledContainer = styled(Container)(({ theme }) => ({
   height: '100%',
@@ -41,7 +42,13 @@ const Registration: NextPage = () => {
   const router = useRouter()
   const onSubmit = (data: any) => {
     const trimedForm = trimFormField(data)
-    mutate(trimedForm)
+    mutate(trimedForm, {
+      onSuccess: () => {
+        toast('Register successfully', 'success')
+        router.push('/login')
+      },
+      onError: () => toast('Invalid username or password', `error`),
+    })
   }
   const handleNavigateRegister = () => router.push('/login')
 
@@ -81,7 +88,7 @@ const Registration: NextPage = () => {
             type="password"
           />
           <Input
-            fieldName="confirmPassword"
+            fieldName="passwordConfirm"
             labelName="Confirm Password"
             errors={errors}
             register={register}
@@ -89,7 +96,7 @@ const Registration: NextPage = () => {
           />
 
           <Input
-            fieldName="mobileNumber"
+            fieldName="mobile"
             labelName="Phone Number"
             errors={errors}
             register={register}
@@ -98,9 +105,7 @@ const Registration: NextPage = () => {
 
           <Typography component="p" sx={{ color: 'primary' }}>
             Already have account?{' '}
-            <Link onClick={handleNavigateRegister}>
-              Sign in.
-            </Link>
+            <Link onClick={handleNavigateRegister}>Sign in.</Link>
           </Typography>
         </CardContent>
         <CardActions sx={{ mb: 1, mt: 'auto' }}>

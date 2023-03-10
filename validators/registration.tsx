@@ -5,16 +5,16 @@ const schema = z
   .object({
     username: z.string().min(1, { message: errors.required }),
     password: z.string().min(1, { message: errors.required }),
-    confirmPassword: z.string().min(1, { message: errors.required }),
+    passwordConfirm: z.string().min(1, { message: errors.required }),
     email: z
       .string()
       .min(1, { message: errors.required })
       .email({ message: errors.wrongEmailFormat }),
-    mobileNumber: z.string().min(1, { message: errors.required }),
+    mobile: z.string().min(1, { message: errors.required }),
   })
-  .refine((data) => data.password === data.confirmPassword, {
+  .refine((data) => data.password === data.passwordConfirm, {
     message: errors.passwordsDontMatch,
-    path: ['confirmPassword'], // path of error
+    path: ['passwordConfirm'], // path of error
   })
 
 export default schema

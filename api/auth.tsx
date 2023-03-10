@@ -1,5 +1,5 @@
 import axiosClient from './base'
-import { AuthResponse, LoginPayload, RegisterPayload, User } from '@/interfaces/auth'
+import { AuthResponse, LoginPayload, User } from '@/interfaces/auth'
 
 export async function getUserProfile(): Promise<User>{
   return await axiosClient.get(`${process.env.apiUrl}/users/me`)
@@ -12,9 +12,9 @@ export async function login(data: LoginPayload): Promise<AuthResponse> {
   )
 }
 
-export async function register(data: RegisterPayload): Promise<AuthResponse> {
+export async function register(data: any): Promise<AuthResponse> {
   return await axiosClient.post(
-    `${process.env.apiUrl}/auth/register`,
+    `${process.env.apiUrl}/users/register`,
     JSON.stringify(data)
   )
 }
