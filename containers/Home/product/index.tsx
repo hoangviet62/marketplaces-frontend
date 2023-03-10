@@ -14,7 +14,7 @@ const Product = () => {
 
   const items = products?.data.map((item: Product) => ({
     id: item.id,
-    image: `${process.env.apiUrl}${item.images[0].url}`,
+    image: item.images ? `${process.env.apiUrl}${item.images[0].url}` : '',
     title: item.name,
     content: item.description,
   }))

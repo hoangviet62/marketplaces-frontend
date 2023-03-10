@@ -20,7 +20,7 @@ const ImageListItemBarCustom = styled(ImageListItemBar)(({ theme }) => ({
 
 const Category = () => {
   const theme = useTheme()
-  const {data: categories} = useCategories()
+  const { data: categories } = useCategories()
   const isMedium = useMediaQuery(theme.breakpoints.between('md', 'lg'))
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'))
   let numberToScale = 2
@@ -39,37 +39,40 @@ const Category = () => {
       >
         Categories
       </Typography>
-      {categories?.data && <ImageList
-        gap={4}
-        sx={{ mb: 8, display: 'grid' }}
-        cols={numberToScale}
-      >
-        {categories.data.map((category: Category) => (
-          <ImageListItem key={category.id} sx={{alignItems: 'center'}}>
-            <Image src={`${process.env.apiUrl}${category.images[0].url}`}
-              alt="Image for category"
-              width="0"
-              height="0"
-              sizes="100vw"
-              style={{ width: 130, height: 100 }}
+      {categories?.data && (
+        <ImageList gap={4} sx={{ mb: 8, display: 'grid' }} cols={numberToScale}>
+          {categories.data.map((category: Category) => (
+            <ImageListItem key={category.id} sx={{ alignItems: 'center' }}>
+              <Image
+                src={
+                  category.images
+                    ? `${process.env.apiUrl}${category.images[0].url}`
+                    : ''
+                }
+                alt="Image for category"
+                width="0"
+                height="0"
+                sizes="100vw"
+                style={{ width: 130, height: 100 }}
               />
-            <ImageListItemBarCustom
-              title={
-                <Typography
-                  sx={{ fontWeight: 'bold', pl: 2, pr: 2 }}
-                  variant="subtitle1"
-                  whiteSpace="normal"
-                  color="primary"
-                  component="div"
-                >
-                  {category.name}
-                </Typography>
-              }
-              position="below"
-            />
-          </ImageListItem>
-        ))}
-      </ImageList>}
+              <ImageListItemBarCustom
+                title={
+                  <Typography
+                    sx={{ fontWeight: 'bold', pl: 2, pr: 2 }}
+                    variant="subtitle1"
+                    whiteSpace="normal"
+                    color="primary"
+                    component="div"
+                  >
+                    {category.name}
+                  </Typography>
+                }
+                position="below"
+              />
+            </ImageListItem>
+          ))}
+        </ImageList>
+      )}
     </Box>
   )
 }
