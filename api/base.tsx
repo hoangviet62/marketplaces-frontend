@@ -12,7 +12,7 @@ const axiosClient = axios.create({
 axiosClient.interceptors.request.use(
   (config) => {
     const token = storage.getToken()
-    if (token !== 'undefined') config.headers['Authorization'] = `Bearer ${token}`
+    if (token) config.headers['Authorization'] = `Bearer ${token}`
 
     return config
   },
