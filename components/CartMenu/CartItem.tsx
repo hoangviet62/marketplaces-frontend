@@ -23,7 +23,7 @@ const CartItem = ({ item }: any) => {
         display="flex"
         sx={{ pt: 2, pb: 2 }}
         alignItems="start"
-        justifyContent={'space-between'}
+        // justifyContent={'space-between'}
       >
         <Avatar
           src={`${process.env.apiUrl}${
@@ -44,6 +44,7 @@ const CartItem = ({ item }: any) => {
         <IconButton
           sx={{
             alignSelf: 'center',
+            marginLeft: 'auto'
           }}
           color="error"
           onClick={() => mutate(item.id)}
