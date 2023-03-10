@@ -8,7 +8,7 @@ const Banner = () => {
   const [payload, ] = React.useState({page: 1, perPage: 10})
   const { data } = useBanners(payload)
   const items = data?.data.map((item: Banner) => ({
-    image: `${process.env.apiUrl}${item.images[0].url}`,
+    image: item.images ? `${process.env.apiUrl}${item.images[0].url}`: '',
     title: item.description,
     content: item.linkTo
   }))

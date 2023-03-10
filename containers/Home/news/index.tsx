@@ -38,8 +38,11 @@ const News: React.FC<CategoryProps> = ({ data }) => {
       >
         {data &&
           data.map((item, index) => (
-            <ImageListItem key={index} sx={{alignItems: 'center'}}>
-              <Image src={`${item.image}?w=400&fit=crop&auto=format`}
+            <ImageListItem key={index} sx={{ alignItems: 'center' }}>
+              <Image
+                src={
+                  item.image ? `${item.image}?w=400&fit=crop&auto=format` : ''
+                }
                 alt="Image for category"
                 width="0"
                 height="0"
