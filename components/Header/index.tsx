@@ -20,8 +20,6 @@ import HistoryIcon from '@mui/icons-material/History'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import Link from '@mui/material/Link'
 import { useUIContext } from '@/context/ui'
-import { useUser } from '@/hooks/useAuth'
-import useAddCart from '@/hooks/Cart/useCreateCart'
 import useUserCart from '@/hooks/Cart/useUserCart'
 
 const Search = styled('div')(({ theme }) => ({
@@ -76,8 +74,6 @@ export default function PrimarySearchAppBar() {
     React.useState<null | HTMLElement>(null)
 
   const { showCart, setShowCart } = useUIContext()
-  const { data } = useUser()
-  const { mutate } = useAddCart()
   const { data: userCart } = useUserCart()
 
   const isMenuOpen = Boolean(anchorEl)
@@ -123,23 +119,7 @@ export default function PrimarySearchAppBar() {
   )
 
   const handleCartClick = () => {
-    if (data) {
-      const { data: user } = data
-      if (!user.cart) {
-        mutate()
-      } else {
-        console.log("Already got cart")
-      }
-    }
-
     setShowCart(!showCart)
-
-    // if (!user.cart) {
-    //   setShowCart(!showCart)
-    // } else {
-
-    // }
-    // setShowCart(!showCart)
   }
 
   const mobileMenuId = 'primary-search-account-menu-mobile'
